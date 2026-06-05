@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArrowRight, CheckCircle } from 'lucide-react'
+import CTAButton from './CTAButton'
 
 // TODO: Connect to backend email service (e.g. Resend, SendGrid, or Formspree)
 // to send enquiry emails to info@ourvillarentals.com.
@@ -199,21 +200,15 @@ export default function ContactForm({ prefilledDates = {} }) {
         />
       </Field>
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-        <button
-          type="submit"
-          className="inline-flex items-center gap-2.5 px-10 py-4 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-200 min-h-[52px]"
-          style={{ fontFamily: 'Manrope, sans-serif', backgroundColor: '#C9A96E', color: '#0F1A24' }}
-          onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
-          onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
-        >
+      <div className="pt-2">
+        <CTAButton type="submit" variant="primary" size="lg">
           Send Enquiry <ArrowRight size={13} />
-        </button>
+        </CTAButton>
         <p
-          className="text-xs leading-relaxed"
-          style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
+          className="mt-5"
+          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#9aA090', fontWeight: 300, lineHeight: 1.7 }}
         >
-          No payment required. Response within 24 hours.
+          No payment required. We'll confirm availability and respond within 24 hours.
         </p>
       </div>
     </form>

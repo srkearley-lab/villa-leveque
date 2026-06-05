@@ -3,12 +3,12 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const NAV_LINKS = [
+const NAV = [
   { label: 'The Villa', to: '/villa' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Services', to: '/services' },
-  { label: 'Location', to: '/location' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Gallery',   to: '/gallery' },
+  { label: 'Services',  to: '/services' },
+  { label: 'Location',  to: '/location' },
+  { label: 'Contact',   to: '/contact' },
 ]
 
 export default function Header() {
@@ -18,14 +18,12 @@ export default function Header() {
   const isHome = location.pathname === '/'
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location.pathname])
+  useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -40,24 +38,25 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
           backgroundColor: solid ? 'rgba(250,248,244,0.97)' : 'transparent',
-          backdropFilter: solid ? 'blur(10px)' : 'none',
-          borderBottom: solid ? '1px solid rgba(232,223,208,0.6)' : 'none',
+          backdropFilter: solid ? 'blur(12px)' : 'none',
+          borderBottom: solid ? '1px solid rgba(232,223,208,0.5)' : 'none',
+          boxShadow: solid ? '0 1px 20px rgba(28,43,58,0.05)' : 'none',
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-3 items-center h-16 lg:h-20">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+          <div className="flex items-center h-20 lg:h-24">
 
-            {/* Col 1 — Wordmark */}
-            <div className="flex items-center">
-              <Link to="/" className="flex-shrink-0">
+            {/* Left — Wordmark. flex-1 makes it and the right block equal, centering the nav. */}
+            <div className="flex-1">
+              <Link to="/" className="inline-block">
                 <span
-                  className="transition-colors duration-400"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+                    fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
                     fontWeight: 400,
-                    letterSpacing: '0.05em',
-                    color: solid ? '#1C2B3A' : '#ffffff',
+                    letterSpacing: '0.07em',
+                    color: solid ? '#1C2B3A' : '#FFFFFF',
+                    transition: 'color 0.4s',
                   }}
                 >
                   Villa Leveque
@@ -65,34 +64,69 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* Col 2 — Desktop nav (centered) */}
-            <nav className="hidden lg:flex items-center justify-center gap-8">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="transition-all duration-300 hover:opacity-50"
-                  style={{
-                    fontFamily: 'Manrope, sans-serif',
-                    fontSize: '0.7rem',
-                    fontWeight: 400,
-                    letterSpacing: '0.18em',
-                    textTransform: 'uppercase',
-                    color: solid ? '#1C2B3A' : 'rgba(255,255,255,0.82)',
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            {/* Centre — Desktop nav (shrinks to natural width, balanced by flex-1 sides) */}
+            <nav className="hidden lg:flex items-center gap-10 flex-shrink-0">
+              {NAV.map(link => {
+                const active = location.pathname === link.to
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="relative whitespace-nowrap"
+                    style={{
+                      fontFamily: 'Manrope, sans-serif',
+                      fontSize: '0.73rem',
+                      fontWeight: active ? 500 : 400,
+                      letterSpacing: '0.22em',
+                      textTransform: 'uppercase',
+                      color: solid
+                        ? (active ? '#1C2B3A' : 'rgba(28,43,58,0.5)')
+                        : (active ? '#FFFFFF' : 'rgba(255,255,255,0.65)'),
+                      transition: 'color 0.25s',
+                      paddingBottom: 6,
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.color = solid ? '#1C2B3A' : '#FFFFFF'
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.color = solid
+                        ? (active ? '#1C2B3A' : 'rgba(28,43,58,0.5)')
+                        : (active ? '#FFFFFF' : 'rgba(255,255,255,0.65)')
+                    }}
+                  >
+                    {link.label}
+                    {/* Gold dot beneath active link */}
+                    {active && (
+                      <span
+                        className="absolute left-1/2 -translate-x-1/2"
+                        style={{
+                          bottom: 0,
+                          display: 'block',
+                          width: 3,
+                          height: 3,
+                          borderRadius: '50%',
+                          backgroundColor: '#C9A96E',
+                        }}
+                      />
+                    )}
+                  </Link>
+                )
+              })}
             </nav>
 
-            {/* Col 3 — CTA + mobile trigger (right-aligned) */}
-            <div className="flex items-center justify-end gap-4">
+            {/* Right — CTA + mobile trigger. flex-1 justify-end mirrors the left. */}
+            <div className="flex-1 flex items-center justify-end gap-5">
               <Link
                 to="/contact"
-                className="hidden lg:inline-flex items-center justify-center px-6 py-2.5 text-xs tracking-[0.16em] uppercase font-medium transition-all duration-250 min-h-[40px]"
+                className="hidden lg:inline-flex items-center justify-center whitespace-nowrap transition-all duration-200"
                 style={{
                   fontFamily: 'Manrope, sans-serif',
+                  fontSize: '0.72rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  padding: '12px 28px',
+                  minHeight: 44,
                   backgroundColor: '#C9A96E',
                   color: '#0F1A24',
                 }}
@@ -104,37 +138,37 @@ export default function Header() {
 
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="lg:hidden p-1.5 transition-colors"
-                style={{ color: solid ? '#1C2B3A' : '#ffffff' }}
-                aria-label="Toggle menu"
+                className="lg:hidden p-2 -mr-2 transition-colors"
+                style={{ color: solid ? '#1C2B3A' : '#FFFFFF' }}
+                aria-label="Toggle navigation"
               >
-                {menuOpen ? <X size={20} /> : <Menu size={20} />}
+                {menuOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile fullscreen overlay */}
+      {/* ─── Mobile fullscreen menu ─── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.28 }}
+            transition={{ duration: 0.22 }}
             className="fixed inset-0 z-40 flex flex-col"
             style={{ backgroundColor: '#0F1A24' }}
           >
-            {/* Close button */}
-            <div className="flex items-center justify-between px-6 h-16">
+            {/* Top bar */}
+            <div className="flex items-center justify-between px-5 h-20 flex-shrink-0">
               <Link to="/" onClick={() => setMenuOpen(false)}>
                 <span
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1.25rem',
+                    fontSize: '1.35rem',
                     fontWeight: 400,
-                    letterSpacing: '0.05em',
+                    letterSpacing: '0.07em',
                     color: 'rgba(250,248,244,0.7)',
                   }}
                 >
@@ -143,22 +177,22 @@ export default function Header() {
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-1.5"
-                style={{ color: 'rgba(255,255,255,0.5)' }}
+                className="p-2 -mr-2"
+                style={{ color: 'rgba(255,255,255,0.4)' }}
                 aria-label="Close menu"
               >
-                <X size={20} />
+                <X size={22} />
               </button>
             </div>
 
-            {/* Nav links — vertically centered */}
-            <div className="flex-1 flex flex-col items-center justify-center gap-8 px-6">
-              {NAV_LINKS.map((link, i) => (
+            {/* Nav links — vertically centred */}
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6">
+              {NAV.map((link, i) => (
                 <motion.div
                   key={link.to}
-                  initial={{ opacity: 0, y: 18 }}
+                  initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06 + 0.1, duration: 0.4 }}
+                  transition={{ delay: i * 0.055 + 0.06, duration: 0.38 }}
                 >
                   <Link
                     to={link.to}
@@ -168,8 +202,8 @@ export default function Header() {
                       fontStyle: 'italic',
                       fontSize: 'clamp(2rem, 6vw, 2.75rem)',
                       fontWeight: 300,
-                      color: '#FAF8F4',
-                      lineHeight: 1.1,
+                      lineHeight: 1.12,
+                      color: location.pathname === link.to ? '#C9A96E' : '#FAF8F4',
                     }}
                   >
                     {link.label}
@@ -178,15 +212,25 @@ export default function Header() {
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.42, duration: 0.4 }}
-                className="mt-4"
+                transition={{ delay: 0.4, duration: 0.38 }}
+                className="mt-6"
               >
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center px-10 py-4 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-200 min-h-[52px]"
-                  style={{ fontFamily: 'Manrope, sans-serif', backgroundColor: '#C9A96E', color: '#0F1A24' }}
+                  className="inline-flex items-center justify-center transition-all duration-200"
+                  style={{
+                    fontFamily: 'Manrope, sans-serif',
+                    fontSize: '0.72rem',
+                    fontWeight: 500,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    padding: '16px 40px',
+                    minHeight: 52,
+                    backgroundColor: '#C9A96E',
+                    color: '#0F1A24',
+                  }}
                   onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
                   onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
                 >
@@ -195,14 +239,20 @@ export default function Header() {
               </motion.div>
             </div>
 
-            {/* Footer bar */}
+            {/* Bottom label */}
             <div
-              className="px-6 py-6 text-center"
+              className="px-6 py-6 text-center flex-shrink-0"
               style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
             >
               <p
-                className="text-xs tracking-[0.24em] uppercase"
-                style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(255,255,255,0.22)', fontWeight: 300 }}
+                style={{
+                  fontFamily: 'Manrope, sans-serif',
+                  fontSize: '0.68rem',
+                  color: 'rgba(255,255,255,0.2)',
+                  fontWeight: 300,
+                  letterSpacing: '0.28em',
+                  textTransform: 'uppercase',
+                }}
               >
                 Kassiopi &nbsp;&middot;&nbsp; Corfu &nbsp;&middot;&nbsp; Greece
               </p>

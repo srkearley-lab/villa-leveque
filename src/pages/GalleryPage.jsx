@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import GalleryGrid from '../components/GalleryGrid'
+import GalleryGrid     from '../components/GalleryGrid'
 import GalleryLightbox from '../components/GalleryLightbox'
-import PageHero from '../components/PageHero'
+import PageHero        from '../components/PageHero'
+import SectionContainer from '../components/SectionContainer'
+import CTAButton       from '../components/CTAButton'
 import { ALL_IMAGES, IMAGES } from '../data/images'
 
 export default function GalleryPage() {
@@ -15,71 +16,76 @@ export default function GalleryPage() {
 
   return (
     <>
+      {/* Hero — aerial view opens the gallery dramatically */}
       <PageHero
-        image={IMAGES.pool[0].src}
-        alt="Villa Leveque pool and terrace"
-        height="55vh"
-        minHeight="400px"
+        image={IMAGES.views[0].src}
+        alt="Aerial view of Villa Leveque, Kassiopi, Corfu"
+        height="60vh"
+        minHeight="420px"
         label="Photography"
         title="Gallery"
         subtitle={`${total} photographs — pool, bedrooms, living areas, views and gardens.`}
       />
 
-      {/* Keyboard hint bar */}
-      <div className="py-5 border-b" style={{ backgroundColor: '#FAF8F4', borderColor: '#E8DFD0' }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between flex-wrap gap-3">
+      {/* Divider bar — categories hint */}
+      <div style={{ backgroundColor: '#FAF8F4', borderBottom: '1px solid #E8DFD0' }}>
+        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-4 flex items-center justify-between gap-4">
           <p
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.8rem', color: '#9aA090', fontWeight: 300 }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#9aA090', fontWeight: 300 }}
           >
-            Browse all spaces — pool, bedrooms, living areas, views and gardens.
+            Browse by space — filter above the grid to explore each area of the villa.
           </p>
           <p
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', color: '#C4B9A8', fontWeight: 300, letterSpacing: '0.06em' }}
+            className="hidden md:block flex-shrink-0"
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C4B9A8', fontWeight: 300, letterSpacing: '0.06em' }}
           >
-            Click to open · Arrow keys to navigate · Esc to close
+            Touch or click any image to open fullscreen
           </p>
         </div>
       </div>
 
       {/* Gallery grid */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
-          <GalleryGrid onImageClick={setLightboxIndex} />
-        </div>
-      </section>
+      <SectionContainer bg="cream" spacing="md">
+        <GalleryGrid onImageClick={setLightboxIndex} />
+      </SectionContainer>
 
       {/* CTA */}
-      <section className="py-24 text-center" style={{ backgroundColor: '#1C2B3A' }}>
-        <div className="max-w-xl mx-auto px-6">
-          <div className="w-8 h-px mx-auto mb-10" style={{ backgroundColor: '#C9A96E' }} />
+      <SectionContainer bg="navy" spacing="lg">
+        <div className="text-center">
+          <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
+          <p
+            className="uppercase mb-4"
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+          >
+            Availability
+          </p>
           <h2
             className="font-light mb-5"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: 'italic',
+              fontSize: 'clamp(2rem, 4vw, 3.25rem)',
               color: '#FAF8F4',
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 300,
             }}
           >
             Like What You See?
           </h2>
           <p
-            className="font-light mb-10 leading-relaxed"
-            style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.45)', fontWeight: 300, fontSize: '0.9rem' }}
+            className="mb-10 mx-auto"
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '40ch' }}
           >
             Check availability for your preferred dates and we'll take care of the rest.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-10 py-4 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-200 min-h-[52px]"
-            style={{ fontFamily: 'Manrope, sans-serif', backgroundColor: '#C9A96E', color: '#0F1A24' }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
-          >
-            Check Availability <ArrowRight size={13} />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <CTAButton variant="primary" size="lg" to="/contact">
+              Check Availability <ArrowRight size={13} />
+            </CTAButton>
+            <CTAButton variant="outline-light" size="lg" to="/villa">
+              Explore the Villa
+            </CTAButton>
+          </div>
         </div>
-      </section>
+      </SectionContainer>
 
       {lightboxIndex !== null && (
         <GalleryLightbox

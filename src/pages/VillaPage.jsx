@@ -1,401 +1,426 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Wifi, Wind, Waves, Utensils, Car, Tv, BedDouble, ShowerHead } from 'lucide-react'
-import AmenityGroups from '../components/AmenityGroups'
-import PageHero from '../components/PageHero'
-import BookingEngine from '../components/BookingEngine'
-import { IMAGES } from '../data/images'
+import { motion } from 'framer-motion'
+import {
+  BedDouble, Bath, Users, Waves, Eye, Leaf,
+  Wifi, Wind, Car, Utensils, ArrowRight, Check,
+} from 'lucide-react'
+import PageHero       from '../components/PageHero'
+import SectionContainer  from '../components/SectionContainer'
+import VillaFactCard     from '../components/VillaFactCard'
+import AmenityCard       from '../components/AmenityCard'
+import AmenityGroups     from '../components/AmenityGroups'
+import CTAButton         from '../components/CTAButton'
+import { IMAGES }        from '../data/images'
 
-const SectionLabel = ({ children }) => (
-  <p
-    className="text-xs tracking-[0.2em] uppercase mb-5"
-    style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
-  >
-    {children}
-  </p>
-)
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
-const BodyText = ({ children }) => (
-  <p
-    className="text-sm leading-relaxed"
-    style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.9 }}
-  >
-    {children}
-  </p>
-)
-
-const TABS = ['Ground Floor', 'First Floor', 'Outdoor Spaces']
-
-const SIDEBAR_AMENITIES = [
-  { icon: <BedDouble size={13} />, label: '3 en-suite bedrooms' },
-  { icon: <Waves size={13} />, label: 'Private pool & terrace' },
-  { icon: <Wind size={13} />, label: 'Air conditioning throughout' },
-  { icon: <Wifi size={13} />, label: 'High-speed WiFi' },
-  { icon: <Utensils size={13} />, label: 'Fully equipped kitchen' },
-  { icon: <Car size={13} />, label: 'Private parking' },
-  { icon: <Tv size={13} />, label: 'Satellite TV' },
-  { icon: <ShowerHead size={13} />, label: 'Outdoor shower' },
+const KEY_FACTS = [
+  { value: '3 Bedrooms',   sub: 'All En-Suite',   bordered: true  },
+  { value: '3 Bathrooms',  sub: 'Private',         bordered: true  },
+  { value: '6 Guests',     sub: 'Maximum',         bordered: true  },
+  { value: 'Heated Pool',  sub: 'Private',         bordered: true  },
+  { value: 'Sea Views',    sub: 'To Albania',      bordered: false },
 ]
 
-function GroundFloorContent() {
+const AMENITIES = [
+  { icon: BedDouble, title: '3 Bedrooms'       },
+  { icon: Bath,      title: '3 Bathrooms'      },
+  { icon: Users,     title: 'Sleeps 6'         },
+  { icon: Waves,     title: 'Private Pool'     },
+  { icon: Eye,       title: 'Sea Views'        },
+  { icon: Leaf,      title: 'Gardens'          },
+  { icon: Wifi,      title: 'High-Speed Wi-Fi' },
+  { icon: Wind,      title: 'Air Conditioning' },
+  { icon: Car,       title: 'Private Parking'  },
+  { icon: Utensils,  title: 'Full Kitchen'     },
+]
+
+const BEDROOMS = [
+  { label: 'Master Bedroom', detail: 'King bed · Sea view · En-suite shower · Private terrace'    },
+  { label: 'Bedroom Two',    detail: 'Double bed · Garden view · En-suite bathroom · Balcony'     },
+  { label: 'Bedroom Three',  detail: 'Double bed · Terrace access · En-suite bathroom'            },
+]
+
+const OUTDOOR_CARDS = [
+  { img: IMAGES.pool[0],   title: 'Private Pool',      desc: 'A generous private pool with a broad stone terrace, sun loungers and open views across the landscape and out to sea.'       },
+  { img: IMAGES.dining[0], title: 'Outdoor Dining',    desc: 'A pergola-shaded terrace with a dining table for eight — perfect for long evening meals under the stars.'                   },
+  { img: IMAGES.pool[2],   title: 'Terrace & Garden',  desc: 'Mature olive and bougainvillea gardens wrap the terrace, creating natural shade, privacy and a beautiful Mediterranean atmosphere.' },
+]
+
+const GALLERY_TEASER = [
+  IMAGES.pool[1],
+  IMAGES.bedrooms[0],
+  IMAGES.living[0],
+  IMAGES.exterior[0],
+]
+
+// ─── Section helpers ───────────────────────────────────────────────────────────
+
+function SectionLabel({ children }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      <motion.div
-        initial={{ opacity: 0, x: -16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.45 }}
-      >
-        <SectionLabel>Ground Floor</SectionLabel>
-        <h2
-          className="text-3xl md:text-4xl font-light mb-8"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
-        >
-          Open-Plan Living & Kitchen
-        </h2>
-        <div className="space-y-5">
-          <BodyText>
-            The ground floor is conceived as a single, open space where cooking, dining and
-            relaxing naturally flow together. The fully equipped kitchen opens directly into the
-            dining area, which in turn opens onto the terrace through wide glass doors.
-          </BodyText>
-          <BodyText>
-            The living room is comfortably furnished with a generous sofa, flat-screen television
-            and direct access to the outdoor spaces. The layout ensures the terrace feels like a
-            natural extension of the ground floor.
-          </BodyText>
-          <BodyText>
-            A guest WC is located on the ground floor alongside useful utility space including a
-            washing machine and additional storage.
-          </BodyText>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, x: 16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.45 }}
-        className="grid grid-cols-2 gap-3"
-      >
-        {[IMAGES.living[0], IMAGES.living[2], IMAGES.living[3], IMAGES.living[4]].map(img => (
-          <div key={img.src} className="overflow-hidden">
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full aspect-square object-cover hover:scale-[1.04] transition-transform duration-500"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  )
-}
-
-function FirstFloorContent() {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      <motion.div
-        initial={{ opacity: 0, x: 16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.45 }}
-        className="order-2 lg:order-1 grid grid-cols-2 gap-3"
-      >
-        {[IMAGES.bedrooms[0], IMAGES.bedrooms[1], IMAGES.bedrooms[6], IMAGES.bedrooms[3]].map(img => (
-          <div key={img.src} className="overflow-hidden">
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full aspect-square object-cover hover:scale-[1.04] transition-transform duration-500"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, x: -16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.45 }}
-        className="order-1 lg:order-2"
-      >
-        <SectionLabel>First Floor</SectionLabel>
-        <h2
-          className="text-3xl md:text-4xl font-light mb-8"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
-        >
-          Three En-Suite Bedrooms
-        </h2>
-        <div className="space-y-5">
-          <BodyText>
-            The first floor is home to three beautifully appointed bedrooms, each with its own
-            private en-suite bathroom, air conditioning and private terrace or balcony access.
-          </BodyText>
-          <BodyText>
-            The master bedroom faces the sea, offering uninterrupted views towards Albania — a
-            remarkable prospect to wake up to each morning. The two further bedrooms are equally
-            spacious and share equally beautiful outlooks over the gardens and landscape.
-          </BodyText>
-          <BodyText>
-            All bedrooms are dressed with crisp white linens, quality towels and everything
-            needed for a comfortable and restful stay.
-          </BodyText>
-        </div>
-
-        <div className="mt-8 grid grid-cols-3 gap-2">
-          {['Master Bedroom', 'Bedroom 2', 'Bedroom 3'].map(label => (
-            <div
-              key={label}
-              className="text-center p-4"
-              style={{ border: '1px solid #E8DFD0', backgroundColor: '#FFFFFF' }}
-            >
-              <p
-                className="text-xs mb-1"
-                style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
-              >
-                {label}
-              </p>
-              <p
-                className="text-xs"
-                style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300 }}
-              >
-                En-suite · A/C
-              </p>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    </div>
-  )
-}
-
-function OutdoorContent() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
+    <p
+      className="uppercase mb-3"
+      style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
     >
-      <div className="text-center mb-12">
-        <SectionLabel>Outside</SectionLabel>
-        <h2
-          className="text-3xl md:text-4xl font-light mb-5"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
-        >
-          Outdoor Spaces
-        </h2>
-        <p
-          className="text-sm max-w-xl mx-auto leading-relaxed"
-          style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.9 }}
-        >
-          At Villa Leveque, outdoor living is central to the experience. The terrace, pool and garden
-          are designed for long, sun-drenched days and warm Mediterranean evenings.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[
-          { img: IMAGES.pool[0], title: 'Private Pool', desc: 'A generous private pool with a broad stone terrace, sun loungers and open views across the landscape.' },
-          { img: IMAGES.dining[0], title: 'Outdoor Dining', desc: 'A pergola-shaded dining terrace with seating for eight, perfect for evening meals under the stars.' },
-          { img: IMAGES.pool[2], title: 'Terrace & Garden', desc: 'Mature olive and bougainvillea gardens surrounding the terrace create natural privacy and beauty.' },
-        ].map(item => (
-          <div key={item.title} className="group">
-            <div className="overflow-hidden mb-4">
-              <img
-                src={item.img.src}
-                alt={item.img.alt}
-                className="w-full aspect-[4/3] object-cover group-hover:scale-[1.04] transition-transform duration-500"
-                loading="lazy"
-              />
-            </div>
-            <h3
-              className="text-xl font-normal mb-2"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
-            >
-              {item.title}
-            </h3>
-            <BodyText>{item.desc}</BodyText>
-          </div>
-        ))}
-      </div>
-    </motion.div>
+      {children}
+    </p>
   )
 }
+
+function SectionHeading({ children, light = false }) {
+  return (
+    <h2
+      className="font-light leading-tight"
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+        color: light ? '#FAF8F4' : '#1C2B3A',
+        fontWeight: 300,
+      }}
+    >
+      {children}
+    </h2>
+  )
+}
+
+function Body({ children }) {
+  return (
+    <p
+      className="leading-relaxed"
+      style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9 }}
+    >
+      {children}
+    </p>
+  )
+}
+
+function ImageGrid({ images, ratio = 'aspect-square' }) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {images.map((img, i) => (
+        <motion.div
+          key={img.src}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.07, duration: 0.5 }}
+          className="overflow-hidden"
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            className={`w-full ${ratio} object-cover hover:scale-[1.04] transition-transform duration-600`}
+            loading="lazy"
+          />
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function VillaPage() {
-  const [activeTab, setActiveTab] = useState(0)
-
   return (
     <>
+      {/* 1 — Hero */}
       <PageHero
         image={IMAGES.pool[0].src}
-        alt="Villa Leveque pool and terrace, Kassiopi"
-        height="70vh"
-        minHeight="480px"
+        alt="Villa Leveque pool and terrace, Kassiopi, Corfu"
+        height="75vh"
+        minHeight="520px"
         label="Villa Leveque · Kassiopi, Corfu"
         title="Inside Villa Leveque"
-        subtitle="Three en-suite bedrooms, private pool and generous terraces above Kassiopi harbour."
+        subtitle="Three en-suite bedrooms, private heated pool and generous terraces above Kassiopi harbour."
       />
 
-      {/* Tab navigation */}
-      <div
-        className="sticky top-0 z-30 border-b overflow-x-auto"
-        style={{
-          backgroundColor: '#FAF8F4',
-          borderColor: '#E8DFD0',
-          scrollbarWidth: 'none',
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          <div className="flex items-center gap-0">
-            {TABS.map((tab, i) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(i)}
-                className="relative px-6 py-5 text-xs tracking-[0.15em] uppercase font-medium transition-colors duration-200 whitespace-nowrap flex-shrink-0"
-                style={{
-                  fontFamily: 'Manrope, sans-serif',
-                  color: activeTab === i ? '#1C2B3A' : '#9aA090',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                }}
-              >
-                {tab}
-                {activeTab === i && (
-                  <motion.div
-                    layoutId="tab-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5"
-                    style={{ backgroundColor: '#C9A96E' }}
-                  />
-                )}
-              </button>
+      {/* 2 — Intro */}
+      <SectionContainer bg="cream" spacing="lg" narrow>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="text-center"
+        >
+          <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
+          <SectionLabel>Overview</SectionLabel>
+          <SectionHeading>A private villa for six,<br />above Kassiopi</SectionHeading>
+          <div className="mt-6 space-y-4">
+            <Body>
+              Villa Leveque is a beautifully presented three-bedroom villa positioned above Kassiopi,
+              one of northeast Corfu's most beautiful and unspoilt villages. Built across two floors
+              with generous outdoor spaces, the villa accommodates up to six guests in comfort and
+              privacy.
+            </Body>
+            <Body>
+              The villa combines a calm Mediterranean aesthetic with all the amenities expected of a
+              premium self-catering property. From the private heated pool overlooking the landscape to
+              the beautifully equipped kitchen and three en-suite bedrooms — every detail has been
+              considered.
+            </Body>
+          </div>
+        </motion.div>
+      </SectionContainer>
+
+      {/* 3 — Key facts bar */}
+      <SectionContainer bg="white" spacing="md">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-center mb-10">
+            <SectionLabel>At a Glance</SectionLabel>
+            <SectionHeading>Villa Details</SectionHeading>
+          </div>
+
+          {/* Stat bar */}
+          <div
+            className="grid grid-cols-2 md:grid-cols-5 mb-12"
+            style={{ border: '1px solid #E8DFD0' }}
+          >
+            {KEY_FACTS.map(f => (
+              <VillaFactCard
+                key={f.value}
+                value={f.value}
+                sub={f.sub}
+                bordered={f.bordered}
+              />
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Tab content with sticky sidebar */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-16">
-
-            {/* Main tab content */}
-            <div>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  {activeTab === 0 && <GroundFloorContent />}
-                  {activeTab === 1 && <FirstFloorContent />}
-                  {activeTab === 2 && <OutdoorContent />}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Sticky sidebar — desktop only */}
-            <div className="hidden xl:block">
-              <div
-                className="sticky top-24 p-8"
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #E8DFD0',
-                  boxShadow: '0 4px 24px rgba(28,43,58,0.06)',
-                }}
+          {/* Amenity icon grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {AMENITIES.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.045, duration: 0.4 }}
               >
-                <div className="w-6 h-px mb-5" style={{ backgroundColor: '#C9A96E' }} />
-                <p
-                  className="text-xs tracking-[0.18em] uppercase mb-2"
-                  style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
-                >
-                  Villa Leveque
-                </p>
-                <h3
-                  className="text-2xl font-light mb-1"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
-                >
-                  At a Glance
-                </h3>
-                <p
-                  className="text-xs mb-6"
-                  style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
-                >
-                  Kassiopi, Corfu
-                </p>
-
-                <div
-                  className="mb-6 pb-6"
-                  style={{ borderBottom: '1px solid #E8DFD0' }}
-                >
-                  {[
-                    ['Bedrooms', '3 en-suite'],
-                    ['Guests', 'Up to 6'],
-                    ['Pool', 'Private'],
-                    ['Views', 'Sea & garden'],
-                  ].map(([key, val]) => (
-                    <div key={key} className="flex justify-between items-baseline mb-3">
-                      <span
-                        className="text-xs"
-                        style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
-                      >
-                        {key}
-                      </span>
-                      <span
-                        className="text-xs font-medium"
-                        style={{ fontFamily: 'Manrope, sans-serif', color: '#1C2B3A', fontWeight: 500 }}
-                      >
-                        {val}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <BookingEngine compact />
-              </div>
-            </div>
+                <AmenityCard icon={item.icon} title={item.title} variant="minimal" />
+              </motion.div>
+            ))}
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </SectionContainer>
 
-      {/* Amenities */}
+      {/* 4 — Ground Floor (text left, images right) */}
+      <SectionContainer bg="cream" spacing="lg">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
+            <SectionLabel>Ground Floor</SectionLabel>
+            <SectionHeading>Open-Plan Living<br />&amp; Kitchen</SectionHeading>
+            <div className="mt-6 space-y-4">
+              <Body>
+                The ground floor is conceived as a single, open space where cooking, dining and
+                relaxing naturally flow together. The fully equipped kitchen opens directly into the
+                dining area, which opens onto the terrace through wide glass doors.
+              </Body>
+              <Body>
+                The living room is comfortably furnished with a generous sofa, flat-screen television
+                and direct access to the outdoor spaces. The layout ensures the terrace feels like a
+                natural extension of the ground floor — not a separate area.
+              </Body>
+              <Body>
+                A guest WC sits on the ground floor alongside useful utility space including a
+                washing machine and additional storage.
+              </Body>
+            </div>
+            <div className="flex flex-wrap gap-3 mt-8">
+              {['Open-plan layout', 'Fully equipped kitchen', 'Dining for 8', 'Guest WC', 'Washing machine'].map(f => (
+                <span
+                  key={f}
+                  className="flex items-center gap-1.5 text-xs"
+                  style={{ fontFamily: 'Manrope, sans-serif', color: '#5A6B60', fontWeight: 300 }}
+                >
+                  <Check size={11} style={{ color: '#C9A96E' }} />
+                  {f}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <ImageGrid images={[IMAGES.living[0], IMAGES.living[2], IMAGES.living[3], IMAGES.living[4]]} />
+        </div>
+      </SectionContainer>
+
+      {/* 5 — Bedrooms (images left, text right) */}
+      <SectionContainer bg="white" spacing="lg">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1">
+            <ImageGrid images={[IMAGES.bedrooms[0], IMAGES.bedrooms[1], IMAGES.bedrooms[6], IMAGES.bedrooms[3]]} />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="order-1 lg:order-2"
+          >
+            <SectionLabel>First Floor</SectionLabel>
+            <SectionHeading>Three En-Suite<br />Bedrooms</SectionHeading>
+            <div className="mt-6 space-y-4">
+              <Body>
+                The first floor is home to three beautifully appointed bedrooms, each with its own
+                private en-suite bathroom, air conditioning and private terrace or balcony access.
+              </Body>
+              <Body>
+                The master bedroom faces the sea, offering uninterrupted views towards Albania — a
+                remarkable prospect to wake to each morning. The two further bedrooms share equally
+                beautiful outlooks over the gardens and landscape.
+              </Body>
+            </div>
+
+            <div className="mt-8 space-y-3">
+              {BEDROOMS.map(b => (
+                <div
+                  key={b.label}
+                  className="px-5 py-4"
+                  style={{ border: '1px solid #E8DFD0', backgroundColor: '#FAF8F4' }}
+                >
+                  <p
+                    className="mb-1"
+                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase' }}
+                  >
+                    {b.label}
+                  </p>
+                  <p
+                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.82rem', color: '#5A6B60', fontWeight: 300 }}
+                  >
+                    {b.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </SectionContainer>
+
+      {/* 6 — Outdoor spaces */}
+      <SectionContainer bg="cream" spacing="lg">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <SectionLabel>Outside</SectionLabel>
+          <SectionHeading>The Pool, Terrace<br />&amp; Garden</SectionHeading>
+          <p
+            className="mt-5 mx-auto"
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '52ch' }}
+          >
+            At Villa Leveque, outdoor living is central to the experience — long sun-drenched
+            afternoons beside the pool and candlelit evenings beneath the pergola.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {OUTDOOR_CARDS.map((card, i) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="group"
+            >
+              <div className="overflow-hidden mb-5">
+                <img
+                  src={card.img.src}
+                  alt={card.img.alt}
+                  className="w-full aspect-[4/3] object-cover group-hover:scale-[1.04] transition-transform duration-600"
+                  loading="lazy"
+                />
+              </div>
+              <div className="w-5 h-px mb-4" style={{ backgroundColor: '#C9A96E' }} />
+              <h3
+                className="mb-3 font-normal"
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.35rem', color: '#1C2B3A' }}
+              >
+                {card.title}
+              </h3>
+              <Body>{card.desc}</Body>
+            </motion.div>
+          ))}
+        </div>
+      </SectionContainer>
+
+      {/* 7 — Villa Amenities */}
       <AmenityGroups />
 
-      {/* Booking CTA */}
-      <section className="py-24 md:py-28 text-white text-center" style={{ backgroundColor: '#1C2B3A' }}>
-        <div className="max-w-2xl mx-auto px-6">
+      {/* 8 — Gallery teaser */}
+      <SectionContainer bg="sand" spacing="md">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-8">
+          <div>
+            <SectionLabel>Photography</SectionLabel>
+            <SectionHeading>Explore the Villa</SectionHeading>
+          </div>
+          <CTAButton variant="outline-dark" size="md" to="/gallery">
+            See All Photos <ArrowRight size={13} />
+          </CTAButton>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {GALLERY_TEASER.map((img, i) => (
+            <motion.div
+              key={img.src}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="overflow-hidden"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full aspect-square object-cover hover:scale-[1.04] transition-transform duration-600"
+                loading="lazy"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </SectionContainer>
+
+      {/* 9 — Enquire CTA */}
+      <SectionContainer bg="navy" spacing="lg">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
           <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
-          <h2
-            className="text-4xl md:text-5xl font-light mb-5"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-          >
-            Ready to Book?
-          </h2>
+          <SectionLabel>Availability</SectionLabel>
+          <SectionHeading light>Ready to Book?</SectionHeading>
           <p
-            className="text-sm font-light mb-10 leading-relaxed"
-            style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.5)', fontWeight: 300 }}
+            className="mt-5 mx-auto mb-10"
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.5)', fontWeight: 300, lineHeight: 1.9, maxWidth: '44ch' }}
           >
             Submit your preferred dates and we'll confirm availability and everything
-            you need for a perfect stay.
+            you need for a perfect stay at Villa Leveque.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-9 py-4 text-xs tracking-[0.18em] uppercase font-medium transition-all duration-200"
-            style={{
-              fontFamily: 'Manrope, sans-serif',
-              backgroundColor: '#C9A96E',
-              color: '#0F1A24',
-            }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
-          >
-            Enquire Now <ArrowRight size={13} />
-          </Link>
-        </div>
-      </section>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <CTAButton variant="primary" size="lg" to="/contact">
+              Enquire Now <ArrowRight size={13} />
+            </CTAButton>
+            <CTAButton variant="outline-light" size="lg" href="https://wa.me/306985743536" external>
+              WhatsApp Us
+            </CTAButton>
+          </div>
+        </motion.div>
+      </SectionContainer>
     </>
   )
 }
