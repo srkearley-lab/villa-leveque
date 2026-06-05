@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+:root {
+  --villa-cream: #FAF8F4;
+  --villa-sand: #E8DFD0;
+  --villa-olive: #6B7C5C;
+  --villa-navy: #1C2B3A;
+  --villa-gold: #C9A96E;
+  --villa-white: #FFFFFF;
+  --villa-dark: #0F1A24;
+  --villa-text: #2C3E35;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,17 +22,37 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #fdfcfa;
-  color: #2c2c2c;
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--villa-cream);
+  color: var(--villa-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 body.lightbox-open {
   overflow: hidden;
+}
+
+/* Gold divider utility */
+.gold-divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--villa-gold);
+  display: block;
+}
+
+/* Date input styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--villa-gold) !important;
+  outline: none;
 }

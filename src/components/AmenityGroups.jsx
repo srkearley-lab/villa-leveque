@@ -70,27 +70,48 @@ const AMENITY_GROUPS = [
 
 export default function AmenityGroups() {
   return (
-    <section className="py-20 lg:py-28 bg-[#f5f0e8]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="text-xs tracking-widest uppercase font-medium text-[#b89a6b] mb-3">
+    <section className="py-24 md:py-32" style={{ backgroundColor: '#E8DFD0' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="text-center mb-16">
+          <p
+            className="text-xs tracking-[0.2em] uppercase mb-4"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+          >
             What's Included
           </p>
-          <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl text-[#1e2d3d]">
+          <h2
+            className="text-4xl md:text-5xl font-light"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
+          >
             Villa Amenities
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {AMENITY_GROUPS.map((group) => (
-            <div key={group.group} className="bg-white p-8 border border-[#e8e2d9]">
-              <h3 className="font-['Playfair_Display'] text-lg text-[#1e2d3d] mb-5 pb-4 border-b border-[#e8e2d9]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {AMENITY_GROUPS.map(group => (
+            <div
+              key={group.group}
+              className="p-8"
+              style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(232,223,208,0.6)' }}
+            >
+              <h3
+                className="text-lg font-normal mb-5 pb-4"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: '#1C2B3A',
+                  borderBottom: '1px solid #E8DFD0',
+                }}
+              >
                 {group.group}
               </h3>
               <ul className="space-y-2.5">
-                {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-[#6b7a5c] font-light">
-                    <span className="text-[#b89a6b] flex-shrink-0 mt-0.5">–</span>
+                {group.items.map(item => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm"
+                    style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300 }}
+                  >
+                    <span style={{ color: '#C9A96E', flexShrink: 0, marginTop: 2 }}>—</span>
                     {item}
                   </li>
                 ))}

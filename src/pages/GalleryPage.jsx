@@ -9,50 +9,74 @@ export default function GalleryPage() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
   const total = ALL_IMAGES.length
 
-  const handlePrev = () =>
-    setLightboxIndex((i) => (i === 0 ? total - 1 : i - 1))
-  const handleNext = () =>
-    setLightboxIndex((i) => (i === total - 1 ? 0 : i + 1))
+  const handlePrev = () => setLightboxIndex(i => (i === 0 ? total - 1 : i - 1))
+  const handleNext = () => setLightboxIndex(i => (i === total - 1 ? 0 : i + 1))
 
   return (
     <>
       {/* Page header */}
-      <section className="pt-32 pb-12 bg-[#fdfcfa] text-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="text-xs tracking-widest uppercase font-medium text-[#b89a6b] mb-3">
+      <section
+        className="pt-36 pb-14 text-center"
+        style={{ backgroundColor: '#FAF8F4' }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <p
+            className="text-xs tracking-[0.2em] uppercase mb-4"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+          >
             Photography
           </p>
-          <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl text-[#1e2d3d] mb-4">
+          <h1
+            className="text-5xl md:text-6xl font-light mb-5"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A', fontStyle: 'italic' }}
+          >
             Gallery
           </h1>
-          <p className="text-[#6b7a5c] text-sm font-light max-w-md mx-auto">
+          <p
+            className="text-sm font-light max-w-md mx-auto leading-relaxed"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300 }}
+          >
             Browse all {total} photographs of Villa Leveque — from the pool and terraces to
-            the bedrooms and surrounding landscape.
+            the bedrooms and surrounding Kassiopi landscape.
           </p>
         </div>
       </section>
 
       {/* Gallery */}
-      <section className="pb-20 lg:pb-28 bg-[#fdfcfa]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="pb-24 md:pb-32" style={{ backgroundColor: '#FAF8F4' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <GalleryGrid onImageClick={setLightboxIndex} />
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-[#f5f0e8] text-center">
+      <section className="py-20 text-center" style={{ backgroundColor: '#1C2B3A' }}>
         <div className="max-w-xl mx-auto px-6">
-          <h2 className="font-['Playfair_Display'] text-3xl text-[#1e2d3d] mb-4">
+          <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
+          <h2
+            className="text-3xl md:text-4xl font-light mb-4"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: '#FAF8F4' }}
+          >
             Like What You See?
           </h2>
-          <p className="text-[#6b7a5c] text-sm font-light mb-8">
+          <p
+            className="text-sm font-light mb-10 leading-relaxed"
+            style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.5)', fontWeight: 300 }}
+          >
             Check availability for your preferred dates and we'll take care of the rest.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#1e2d3d] text-white text-xs tracking-widest uppercase font-medium hover:bg-[#2a3e55] transition-colors"
+            className="inline-flex items-center gap-2 px-9 py-4 text-xs tracking-[0.18em] uppercase font-medium transition-all duration-200"
+            style={{
+              fontFamily: 'Manrope, sans-serif',
+              backgroundColor: '#C9A96E',
+              color: '#0F1A24',
+            }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
           >
-            Check Availability <ArrowRight size={14} />
+            Check Availability <ArrowRight size={13} />
           </Link>
         </div>
       </section>

@@ -18,7 +18,7 @@ export default function Header() {
   const isHome = location.pathname === '/'
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40)
+    const handleScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -27,55 +27,78 @@ export default function Header() {
     setMenuOpen(false)
   }, [location.pathname])
 
-  const headerBg = isHome && !scrolled
-    ? 'bg-transparent'
-    : 'bg-[#fdfcfa]/95 backdrop-blur-sm shadow-sm'
-
-  const textColour = isHome && !scrolled ? 'text-white' : 'text-[#1e2d3d]'
-  const logoColour = isHome && !scrolled ? 'text-white' : 'text-[#1e2d3d]'
+  const solid = !isHome || scrolled
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      style={{
+        backgroundColor: solid ? 'rgba(250,248,244,0.97)' : 'transparent',
+        backdropFilter: solid ? 'blur(8px)' : 'none',
+        borderBottom: solid ? '1px solid rgba(232,223,208,0.6)' : 'none',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 lg:h-20">
+
           {/* Wordmark */}
-          <Link to="/" className={`flex-shrink-0 ${logoColour}`}>
-            <span className="font-['Playfair_Display'] text-xl lg:text-2xl font-medium tracking-wide">
+          <Link to="/" className="flex-shrink-0">
+            <span
+              className="text-xl lg:text-2xl font-normal tracking-wide transition-colors duration-300"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: solid ? '#1C2B3A' : '#ffffff',
+                letterSpacing: '0.04em',
+              }}
+            >
               Villa Leveque
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-9">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`text-sm font-light tracking-widest uppercase transition-colors duration-200 hover:opacity-70 ${textColour}`}
+                className="text-xs tracking-[0.18em] uppercase transition-all duration-300 hover:opacity-60"
+                style={{
+                  fontFamily: 'Manrope, sans-serif',
+                  fontWeight: 400,
+                  color: solid ? '#1C2B3A' : 'rgba(255,255,255,0.85)',
+                }}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* CTA + mobile trigger */}
+          {/* CTA + mobile */}
           <div className="flex items-center gap-4">
             <Link
               to="/contact"
-              className={`hidden lg:inline-flex items-center px-5 py-2.5 text-xs tracking-widest uppercase font-medium border transition-all duration-200 ${
-                isHome && !scrolled
-                  ? 'border-white text-white hover:bg-white hover:text-[#1e2d3d]'
-                  : 'border-[#1e2d3d] text-[#1e2d3d] hover:bg-[#1e2d3d] hover:text-white'
-              }`}
+              className="hidden lg:inline-flex items-center px-5 py-2.5 text-xs tracking-[0.18em] uppercase font-medium border transition-all duration-300"
+              style={{
+                fontFamily: 'Manrope, sans-serif',
+                borderColor: solid ? '#1C2B3A' : 'rgba(255,255,255,0.5)',
+                color: solid ? '#1C2B3A' : '#ffffff',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundColor = solid ? '#1C2B3A' : 'rgba(255,255,255,0.15)'
+                e.currentTarget.style.color = solid ? '#FAF8F4' : '#ffffff'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+                e.currentTarget.style.color = solid ? '#1C2B3A' : '#ffffff'
+              }}
             >
               Check Availability
             </Link>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`lg:hidden p-1 ${textColour}`}
+              className="lg:hidden p-1 transition-colors"
+              style={{ color: solid ? '#1C2B3A' : '#ffffff' }}
               aria-label="Toggle menu"
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -92,21 +115,31 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-[#fdfcfa] border-t border-[#e8e2d9]"
+            style={{ backgroundColor: '#FAF8F4', borderTop: '1px solid #E8DFD0' }}
           >
-            <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5">
+            <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-sm tracking-widest uppercase font-light text-[#1e2d3d] hover:opacity-60 transition-opacity"
+                  className="text-xs tracking-[0.18em] uppercase hover:opacity-50 transition-opacity"
+                  style={{
+                    fontFamily: 'Manrope, sans-serif',
+                    color: '#1C2B3A',
+                    fontWeight: 400,
+                  }}
                 >
                   {link.label}
                 </Link>
               ))}
               <Link
                 to="/contact"
-                className="mt-2 inline-flex items-center justify-center px-5 py-3 text-xs tracking-widest uppercase font-medium border border-[#1e2d3d] text-[#1e2d3d] hover:bg-[#1e2d3d] hover:text-white transition-all"
+                className="mt-2 inline-flex items-center justify-center px-5 py-3.5 text-xs tracking-[0.18em] uppercase font-medium border transition-all"
+                style={{
+                  fontFamily: 'Manrope, sans-serif',
+                  borderColor: '#1C2B3A',
+                  color: '#1C2B3A',
+                }}
               >
                 Check Availability
               </Link>

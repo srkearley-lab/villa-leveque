@@ -1,95 +1,112 @@
 import { motion } from 'framer-motion'
-import { Star, Car, ChefHat, ShoppingBasket } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 
 const SERVICES = [
   {
-    icon: <Star size={24} />,
+    num: '01',
     title: 'Personal Concierge',
     desc: 'Your dedicated concierge is on hand throughout your stay to arrange restaurant reservations, boat hire, private tours, and anything else that makes your holiday exceptional.',
     detail: 'Available 7 days a week',
   },
   {
-    icon: <Car size={24} />,
+    num: '02',
     title: 'Private Transfers',
     desc: 'Seamless airport transfers and chauffeur services in a private, air-conditioned vehicle. Arrive and depart in comfort, with no waiting or navigating unfamiliar roads.',
     detail: 'Corfu Airport & beyond',
   },
   {
-    icon: <ChefHat size={24} />,
+    num: '03',
     title: 'Private Chef',
     desc: 'Enjoy the ultimate in-villa dining with a private chef who creates bespoke menus using the finest local ingredients. From intimate dinners to relaxed poolside lunches.',
     detail: 'On request',
   },
   {
-    icon: <ShoppingBasket size={24} />,
+    num: '04',
     title: 'Pre-Arrival Groceries',
-    desc: "Arrive to a fully stocked kitchen. Choose from our curated grocery list and we'll have your provisions ready before you step through the door, so you can relax from the very first moment.",
+    desc: "Arrive to a fully stocked kitchen. Choose from our curated grocery list and we'll have your provisions ready before you step through the door.",
     detail: 'Tailored to your preferences',
   },
 ]
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5 },
-  }),
-}
-
 export default function ServiceCards() {
   return (
-    <section className="py-20 lg:py-28 bg-[#fdfcfa]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="text-xs tracking-widest uppercase font-medium text-[#b89a6b] mb-3">
+    <section className="py-24 md:py-32" style={{ backgroundColor: '#1C2B3A' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+
+        {/* Section header */}
+        <div className="mb-16">
+          <p
+            className="text-xs tracking-[0.2em] uppercase mb-5"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+          >
             Premium Services
           </p>
-          <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl text-[#1e2d3d] mb-4">
-            Services Designed Around Your Stay
+          <h2
+            className="text-4xl md:text-5xl font-light"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: '#FAF8F4' }}
+          >
+            Services Designed Around<br />Your Stay
           </h2>
-          <p className="text-[#6b7a5c] text-sm max-w-lg mx-auto leading-relaxed">
-            Every detail of your holiday is handled with care, so you can focus entirely on rest
-            and enjoyment.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Numbered list */}
+        <div>
           {SERVICES.map((service, i) => (
             <motion.div
-              key={service.title}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              variants={cardVariants}
-              className="flex gap-6 p-8 border border-[#e8e2d9] bg-white hover:shadow-md transition-shadow duration-300"
+              key={service.num}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[80px_1fr_200px] items-start gap-6 md:gap-10 py-8"
+              style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
             >
-              <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#f5f0e8] text-[#b89a6b]">
-                {service.icon}
-              </div>
+              {/* Number */}
+              <span
+                className="text-4xl md:text-5xl font-light leading-none pt-1"
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E', opacity: 0.6 }}
+              >
+                {service.num}
+              </span>
+
+              {/* Content */}
               <div>
-                <h3 className="font-['Playfair_Display'] text-xl text-[#1e2d3d] mb-2">
+                <h3
+                  className="text-2xl md:text-3xl font-light mb-3"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", color: '#FAF8F4' }}
+                >
                   {service.title}
                 </h3>
-                <p className="text-sm text-[#6b7a5c] leading-relaxed font-light mb-3">
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.5)', fontWeight: 300 }}
+                >
                   {service.desc}
                 </p>
-                <span className="text-xs text-[#b89a6b] tracking-wide font-medium">
-                  {service.detail}
-                </span>
               </div>
+
+              {/* Detail */}
+              <span
+                className="text-xs tracking-wider hidden md:block pt-2 text-right"
+                style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 400 }}
+              >
+                {service.detail}
+              </span>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {/* CTA */}
+        <div className="mt-14">
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-3.5 border border-[#1e2d3d] text-[#1e2d3d] text-xs tracking-widest uppercase font-medium hover:bg-[#1e2d3d] hover:text-white transition-all"
+            className="inline-flex items-center gap-3 text-xs tracking-[0.18em] uppercase font-medium transition-colors duration-200"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E' }}
+            onMouseEnter={e => e.currentTarget.style.color = '#FAF8F4'}
+            onMouseLeave={e => e.currentTarget.style.color = '#C9A96E'}
           >
-            Enquire About Services
+            Enquire About Services <ArrowRight size={13} />
           </Link>
         </div>
       </div>

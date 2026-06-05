@@ -4,10 +4,15 @@ import { Mail, Phone } from 'lucide-react'
 import ContactForm from '../components/ContactForm'
 import BookingEngine from '../components/BookingEngine'
 
-// TODO: When Lodgify booking widget is ready, replace the BookingEngine
-// section below with the Lodgify embed code or iFrame.
-// Lodgify integration: https://app.lodgify.com/ — embed their calendar widget
-// for real-time availability and online booking with payment processing.
+// TODO: When Lodgify booking widget is ready, replace the BookingEngine section with
+// the Lodgify embed code or iFrame for real-time availability and online booking.
+// Lodgify integration: https://app.lodgify.com/
+
+const WA_ICON = (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+)
 
 export default function ContactPage() {
   const location = useLocation()
@@ -25,15 +30,24 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="pt-32 pb-12 bg-[#fdfcfa] text-center">
+      <section className="pt-36 pb-14 text-center" style={{ backgroundColor: '#FAF8F4' }}>
         <div className="max-w-3xl mx-auto px-6">
-          <p className="text-xs tracking-widest uppercase font-medium text-[#b89a6b] mb-3">
+          <p
+            className="text-xs tracking-[0.2em] uppercase mb-4"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+          >
             Get in Touch
           </p>
-          <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl text-[#1e2d3d] mb-5">
-            Enquire About Villa Leveque
+          <h1
+            className="text-5xl md:text-6xl font-light mb-5"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A', fontStyle: 'italic' }}
+          >
+            Enquire About<br />Villa Leveque
           </h1>
-          <p className="text-[#6b7a5c] text-sm font-light leading-relaxed max-w-md mx-auto">
+          <p
+            className="text-sm font-light leading-relaxed max-w-md mx-auto"
+            style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.9 }}
+          >
             Share your preferred dates and we'll confirm availability, answer any questions
             and help you plan the perfect stay.
           </p>
@@ -41,82 +55,97 @@ export default function ContactPage() {
       </section>
 
       {/* Main content */}
-      <section className="pb-20 lg:pb-28 bg-[#fdfcfa]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="pb-24 md:pb-32" style={{ backgroundColor: '#FAF8F4' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+
             {/* Form */}
             <div className="lg:col-span-2">
-              <h2 className="font-['Playfair_Display'] text-2xl text-[#1e2d3d] mb-8">
+              <h2
+                className="text-3xl font-light mb-10"
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
+              >
                 Send an Enquiry
               </h2>
               <ContactForm prefilledDates={prefilledDates} />
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               {/* Booking engine */}
               <BookingEngine compact />
 
-              {/* Contact details */}
-              <div className="bg-white border border-[#e8e2d9] p-6">
-                <p className="text-xs tracking-widest uppercase font-medium text-[#b89a6b] mb-5">
+              {/* Direct contact */}
+              <div
+                className="p-7"
+                style={{ backgroundColor: '#1C2B3A' }}
+              >
+                <p
+                  className="text-xs tracking-[0.2em] uppercase mb-6"
+                  style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+                >
                   Direct Contact
                 </p>
-
-                <div className="space-y-4">
-                  <a
-                    href="mailto:info@ourvillarentals.com"
-                    className="flex items-start gap-3 group"
+                <div className="space-y-5">
+                  {[
+                    { href: 'mailto:info@ourvillarentals.com', icon: <Mail size={14} />, label: 'Email', value: 'info@ourvillarentals.com' },
+                    { href: 'tel:+306985743536', icon: <Phone size={14} />, label: 'Phone', value: '+30 6985 743 536' },
+                    { href: 'https://wa.me/306985743536', icon: WA_ICON, label: 'WhatsApp', value: 'Message us on WhatsApp', external: true },
+                  ].map(({ href, icon, label, value, external }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={external ? '_blank' : undefined}
+                      rel={external ? 'noopener noreferrer' : undefined}
+                      className="flex items-start gap-3 group"
+                    >
+                      <span style={{ color: '#C9A96E', flexShrink: 0, marginTop: 2 }}>{icon}</span>
+                      <div>
+                        <p
+                          className="text-xs mb-0.5"
+                          style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.3)', fontWeight: 300 }}
+                        >
+                          {label}
+                        </p>
+                        <p
+                          className="text-sm transition-colors duration-200"
+                          style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.75)', fontWeight: 400 }}
+                          onMouseEnter={e => e.currentTarget.style.color = '#C9A96E'}
+                          onMouseLeave={e => e.currentTarget.style.color = 'rgba(250,248,244,0.75)'}
+                        >
+                          {value}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+                <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <p
+                    className="text-xs"
+                    style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.25)', fontWeight: 300 }}
                   >
-                    <Mail size={16} className="text-[#b89a6b] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-[#9a9490] mb-0.5">Email</p>
-                      <p className="text-sm text-[#1e2d3d] group-hover:text-[#b89a6b] transition-colors font-medium">
-                        info@ourvillarentals.com
-                      </p>
-                    </div>
-                  </a>
-
-                  <a
-                    href="tel:+306985743536"
-                    className="flex items-start gap-3 group"
-                  >
-                    <Phone size={16} className="text-[#b89a6b] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-[#9a9490] mb-0.5">Phone</p>
-                      <p className="text-sm text-[#1e2d3d] group-hover:text-[#b89a6b] transition-colors font-medium">
-                        +30 6985 743 536
-                      </p>
-                    </div>
-                  </a>
-
-                  <a
-                    href="https://wa.me/306985743536"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-3 group"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[#b89a6b] flex-shrink-0 mt-0.5">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    <div>
-                      <p className="text-xs text-[#9a9490] mb-0.5">WhatsApp</p>
-                      <p className="text-sm text-[#1e2d3d] group-hover:text-[#b89a6b] transition-colors font-medium">
-                        Message us on WhatsApp
-                      </p>
-                    </div>
-                  </a>
+                    Kassiopi, Corfu, Greece
+                  </p>
                 </div>
               </div>
 
-              {/* Response note */}
-              <div className="bg-[#f5f0e8] border border-[#e8e2d9] p-6">
-                <p className="text-xs tracking-widest uppercase font-medium text-[#b89a6b] mb-3">
+              {/* Response times */}
+              <div
+                className="p-6"
+                style={{ backgroundColor: '#E8DFD0', border: '1px solid rgba(201,169,110,0.2)' }}
+              >
+                <p
+                  className="text-xs tracking-[0.2em] uppercase mb-3"
+                  style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+                >
                   Response Times
                 </p>
-                <p className="text-sm text-[#6b7a5c] font-light leading-relaxed">
-                  We aim to respond to all enquiries within 24 hours. For urgent requests,
-                  please contact us directly by phone or WhatsApp.
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.8 }}
+                >
+                  We aim to respond to all enquiries within 24 hours. For urgent requests, please
+                  contact us directly by phone or WhatsApp.
                 </p>
               </div>
             </div>
