@@ -3,30 +3,108 @@ import { ArrowRight, CheckCircle } from 'lucide-react'
 
 // TODO: Connect to backend email service (e.g. Resend, SendGrid, or Formspree)
 // to send enquiry emails to info@ourvillarentals.com.
-// Currently uses mailto: as a fallback. Replace with API call when ready.
+// Currently uses mailto: as a fallback.
 
-const inputStyle = {
-  width: '100%',
-  border: '1px solid #E8DFD0',
-  padding: '12px 16px',
-  fontSize: '13px',
-  color: '#1C2B3A',
-  backgroundColor: '#FAF8F4',
-  fontFamily: 'Manrope, sans-serif',
-  fontWeight: 300,
-  outline: 'none',
-  transition: 'border-color 0.2s',
+function Field({ label, required, error, children }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <label
+        className="text-xs tracking-[0.18em] uppercase"
+        style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 500 }}
+      >
+        {label}{required && <span style={{ color: '#C9A96E' }}> *</span>}
+      </label>
+      {children}
+      {error && (
+        <p className="text-xs" style={{ color: '#b8935a', fontFamily: 'Manrope, sans-serif' }}>{error}</p>
+      )}
+    </div>
+  )
 }
 
-const labelStyle = {
-  display: 'block',
-  fontSize: '10px',
-  letterSpacing: '0.18em',
-  textTransform: 'uppercase',
-  color: '#6B7C5C',
-  marginBottom: '8px',
+const BASE = {
+  width: '100%',
+  border: '1px solid #E8DFD0',
+  backgroundColor: '#FFFFFF',
   fontFamily: 'Manrope, sans-serif',
-  fontWeight: 500,
+  fontWeight: 300,
+  fontSize: '0.9375rem',
+  color: '#1C2B3A',
+  outline: 'none',
+  transition: 'border-color 0.2s, box-shadow 0.2s',
+  padding: '14px 18px',
+  lineHeight: 1.5,
+  minHeight: 52,
+  borderRadius: 0,
+  appearance: 'none',
+}
+
+function Input({ type = 'text', name, value, onChange, placeholder, required, min }) {
+  const [focused, setFocused] = useState(false)
+  return (
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      required={required}
+      min={min}
+      style={{
+        ...BASE,
+        borderColor: focused ? '#C9A96E' : '#E8DFD0',
+        boxShadow: focused ? '0 0 0 3px rgba(201,169,110,0.09)' : 'none',
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    />
+  )
+}
+
+function Textarea({ name, value, onChange, placeholder, rows = 5 }) {
+  const [focused, setFocused] = useState(false)
+  return (
+    <textarea
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      rows={rows}
+      style={{
+        ...BASE,
+        minHeight: 'unset',
+        resize: 'none',
+        borderColor: focused ? '#C9A96E' : '#E8DFD0',
+        boxShadow: focused ? '0 0 0 3px rgba(201,169,110,0.09)' : 'none',
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    />
+  )
+}
+
+function Select({ name, value, onChange, children }) {
+  const [focused, setFocused] = useState(false)
+  return (
+    <select
+      name={name}
+      value={value}
+      onChange={onChange}
+      style={{
+        ...BASE,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A96E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right 16px center',
+        paddingRight: 42,
+        borderColor: focused ? '#C9A96E' : '#E8DFD0',
+        boxShadow: focused ? '0 0 0 3px rgba(201,169,110,0.09)' : 'none',
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    >
+      {children}
+    </select>
+  )
 }
 
 export default function ContactForm({ prefilledDates = {} }) {
@@ -40,12 +118,11 @@ export default function ContactForm({ prefilledDates = {} }) {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
-  const [focus, setFocus] = useState(null)
-
   const today = new Date().toISOString().split('T')[0]
-  const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const handleSubmit = e => {
+  const set = (field) => (e) => setForm(prev => ({ ...prev, [field]: e.target.value }))
+
+  const handleSubmit = (e) => {
     e.preventDefault()
     const subject = encodeURIComponent(`Villa Leveque Enquiry — ${form.arrival || 'Dates TBC'}`)
     const body = encodeURIComponent(
@@ -55,161 +132,90 @@ export default function ContactForm({ prefilledDates = {} }) {
     setSubmitted(true)
   }
 
-  const getInputStyle = (field) => ({
-    ...inputStyle,
-    borderColor: focus === field ? '#C9A96E' : '#E8DFD0',
-  })
-
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center">
-        <CheckCircle size={44} style={{ color: '#6B7C5C', marginBottom: 20 }} />
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <div className="w-8 h-px mb-8 mx-auto" style={{ backgroundColor: '#C9A96E' }} />
+        <CheckCircle size={36} style={{ color: '#6B7C5C', marginBottom: 20 }} />
         <h3
-          className="text-3xl font-light mb-3"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
+          className="font-light mb-3"
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: '#1C2B3A', fontSize: '2rem' }}
         >
           Enquiry Sent
         </h3>
         <p
           className="text-sm max-w-sm leading-relaxed"
-          style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.8 }}
+          style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.9 }}
         >
-          Thank you for your interest in Villa Leveque. Your email client has opened
-          with your enquiry. We'll respond within 24 hours.
+          Thank you for your interest in Villa Leveque. Your email client has opened with your
+          enquiry pre-filled. We'll respond within 24 hours.
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div>
-          <label style={labelStyle}>Full Name *</label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            placeholder="Your name"
-            style={getInputStyle('name')}
-            onFocus={() => setFocus('name')}
-            onBlur={() => setFocus(null)}
-          />
-        </div>
-        <div>
-          <label style={labelStyle}>Email Address *</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            placeholder="your@email.com"
-            style={getInputStyle('email')}
-            onFocus={() => setFocus('email')}
-            onBlur={() => setFocus(null)}
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-7">
+      {/* Name + Email */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field label="Full Name" required>
+          <Input name="name" value={form.name} onChange={set('name')} placeholder="Your full name" required />
+        </Field>
+        <Field label="Email Address" required>
+          <Input type="email" name="email" value={form.email} onChange={set('email')} placeholder="your@email.com" required />
+        </Field>
       </div>
 
-      <div>
-        <label style={labelStyle}>Phone / WhatsApp</label>
-        <input
-          type="tel"
-          name="phone"
-          value={form.phone}
-          onChange={handleChange}
-          placeholder="+44 or +30..."
-          style={getInputStyle('phone')}
-          onFocus={() => setFocus('phone')}
-          onBlur={() => setFocus(null)}
-        />
-      </div>
+      {/* Phone */}
+      <Field label="Phone / WhatsApp">
+        <Input type="tel" name="phone" value={form.phone} onChange={set('phone')} placeholder="+44 or +30..." />
+      </Field>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div>
-          <label style={labelStyle}>Arrival Date</label>
-          <input
-            type="date"
-            name="arrival"
-            value={form.arrival}
-            min={today}
-            onChange={handleChange}
-            style={getInputStyle('arrival')}
-            onFocus={() => setFocus('arrival')}
-            onBlur={() => setFocus(null)}
-          />
-        </div>
-        <div>
-          <label style={labelStyle}>Departure Date</label>
-          <input
-            type="date"
-            name="departure"
-            value={form.departure}
-            min={form.arrival || today}
-            onChange={handleChange}
-            style={getInputStyle('departure')}
-            onFocus={() => setFocus('departure')}
-            onBlur={() => setFocus(null)}
-          />
-        </div>
-        <div>
-          <label style={labelStyle}>Guests</label>
-          <select
-            name="guests"
-            value={form.guests}
-            onChange={handleChange}
-            style={getInputStyle('guests')}
-            onFocus={() => setFocus('guests')}
-            onBlur={() => setFocus(null)}
-          >
+      {/* Dates */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <Field label="Arrival Date">
+          <Input type="date" name="arrival" value={form.arrival} onChange={set('arrival')} min={today} />
+        </Field>
+        <Field label="Departure Date">
+          <Input type="date" name="departure" value={form.departure} onChange={set('departure')} min={form.arrival || today} />
+        </Field>
+        <Field label="Guests">
+          <Select name="guests" value={form.guests} onChange={set('guests')}>
             {[1, 2, 3, 4, 5, 6].map(n => (
               <option key={n} value={n}>{n} {n === 1 ? 'guest' : 'guests'}</option>
             ))}
-          </select>
-        </div>
+          </Select>
+        </Field>
       </div>
 
-      <div>
-        <label style={labelStyle}>Message</label>
-        <textarea
+      {/* Message */}
+      <Field label="Message">
+        <Textarea
           name="message"
           value={form.message}
-          onChange={handleChange}
+          onChange={set('message')}
+          placeholder="Tell us about your stay — any questions, special requirements, or anything else we can help with."
           rows={5}
-          placeholder="Tell us about your stay — any special requirements, questions about services, or anything else we can help with."
-          style={{
-            ...getInputStyle('message'),
-            resize: 'none',
-          }}
-          onFocus={() => setFocus('message')}
-          onBlur={() => setFocus(null)}
         />
+      </Field>
+
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <button
+          type="submit"
+          className="inline-flex items-center gap-2.5 px-10 py-4 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-200 min-h-[52px]"
+          style={{ fontFamily: 'Manrope, sans-serif', backgroundColor: '#C9A96E', color: '#0F1A24' }}
+          onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
+          onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
+        >
+          Send Enquiry <ArrowRight size={13} />
+        </button>
+        <p
+          className="text-xs leading-relaxed"
+          style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
+        >
+          No payment required. Response within 24 hours.
+        </p>
       </div>
-
-      <button
-        type="submit"
-        className="inline-flex items-center justify-center gap-2 px-10 py-4 text-xs tracking-[0.18em] uppercase font-medium transition-all duration-200 w-full sm:w-auto"
-        style={{
-          fontFamily: 'Manrope, sans-serif',
-          backgroundColor: '#C9A96E',
-          color: '#0F1A24',
-        }}
-        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
-        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
-      >
-        Send Enquiry <ArrowRight size={13} />
-      </button>
-
-      <p
-        className="text-xs leading-relaxed"
-        style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
-      >
-        No payment is required at this stage. We'll contact you within 24 hours to confirm
-        availability and discuss your stay.
-      </p>
     </form>
   )
 }
