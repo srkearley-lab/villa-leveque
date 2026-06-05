@@ -33,7 +33,7 @@ export default function ContactPage() {
         className="relative pt-40 pb-20"
         style={{ backgroundColor: '#FAF8F4' }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-xl">
             <p
               className="text-xs tracking-[0.28em] uppercase mb-6"
@@ -67,7 +67,7 @@ export default function ContactPage() {
 
       {/* Two-column layout */}
       <section className="pb-24 md:pb-32" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-14 xl:gap-20 items-start">
 
             {/* LEFT — Form */}

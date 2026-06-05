@@ -71,7 +71,7 @@ const AMENITY_GROUPS = [
 export default function AmenityGroups() {
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: '#E8DFD0' }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="text-center mb-16">
           <p
             className="text-xs tracking-[0.2em] uppercase mb-4"

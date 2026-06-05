@@ -4,7 +4,13 @@ import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { HERO_IMAGE } from '../data/images'
 
-const PILLS = ['3 Bedrooms', 'Private Pool', 'Sea Views', 'Kassiopi', 'Concierge']
+const PILLS = [
+  '3 En-Suite Bedrooms',
+  'Private Heated Pool',
+  'Sea Views to Albania',
+  'Kassiopi Village',
+  'Concierge Service',
+]
 
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0)
@@ -20,166 +26,188 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const parallaxOffset = Math.min(scrollY * 0.3, window.innerHeight * 0.22)
+  const parallaxOffset = scrollY * 0.3
 
   return (
     <section
       ref={heroRef}
-      className="relative flex flex-col justify-center overflow-hidden grain"
-      style={{ minHeight: '100svh' }}
+      className="relative overflow-hidden grain"
+      style={{ height: '100svh', minHeight: '600px' }}
     >
-      {/* Background — parallax */}
+      {/* Parallax background */}
       <div
-        className="absolute inset-0 bg-cover bg-center will-change-transform"
+        className="absolute inset-x-0 will-change-transform"
         style={{
-          backgroundImage: `url(${HERO_IMAGE})`,
-          transform: `translateY(${parallaxOffset}px)`,
           top: '-12%',
-          height: '120%',
+          height: '124%',
+          transform: `translateY(${parallaxOffset}px)`,
+          backgroundImage: `url(${HERO_IMAGE})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       />
 
-      {/* Cinematic multi-stop gradient */}
+      {/* Cinematic gradient overlay */}
       <div
         className="absolute inset-0"
         style={{
-          background: `
-            linear-gradient(to bottom,
-              rgba(10,18,28,0.55) 0%,
-              rgba(10,18,28,0.15) 35%,
-              rgba(10,18,28,0.08) 55%,
-              rgba(10,18,28,0.70) 88%,
-              rgba(10,18,28,0.92) 100%
-            )
-          `,
+          background: 'linear-gradient(to bottom, rgba(15,26,36,0.2) 0%, rgba(15,26,36,0.5) 100%)',
+          zIndex: 1,
         }}
       />
 
-      {/* Vignette edges */}
+      {/* Content — bottom third */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at center, transparent 55%, rgba(10,18,28,0.45) 100%)',
-        }}
-      />
+        className="absolute inset-0 flex flex-col justify-end text-center text-white"
+        style={{ zIndex: 2 }}
+      >
+        <div className="px-6 pb-28 md:pb-32">
 
-      {/* Content */}
-      <div className="relative z-10 w-full flex flex-col items-center text-center text-white px-6 pt-32 pb-44 max-w-6xl mx-auto">
-
-        {/* Eyebrow */}
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1 }}
-          className="text-xs tracking-[0.45em] uppercase mb-10 text-white/45"
-          style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
-        >
-          Kassiopi &nbsp;&middot;&nbsp; Corfu &nbsp;&middot;&nbsp; Greece
-        </motion.p>
-
-        {/* Gold rule */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.9, delay: 0.3 }}
-          className="h-px w-12 mb-10 origin-center"
-          style={{ backgroundColor: '#C9A96E' }}
-        />
-
-        {/* Display headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
-          className="mb-8 text-white"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: 'italic',
-            fontWeight: 300,
-            fontSize: 'clamp(4rem, 11vw, 8.5rem)',
-            lineHeight: 0.97,
-            letterSpacing: '-0.02em',
-          }}
-        >
-          A Private Villa<br />
-          <span style={{ color: '#F0E8D8' }}>Above Kassiopi</span>
-        </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.6 }}
-          className="text-base md:text-lg max-w-lg mx-auto mb-14 text-white/65 leading-relaxed"
-          style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
-        >
-          Three en-suite bedrooms, a private pool and sea views across to Albania —
-          just a short walk from Kassiopi harbour.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.75 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16"
-        >
-          <Link
-            to="/contact"
-            className="px-12 py-4 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-300 min-h-[52px] flex items-center"
-            style={{ backgroundColor: '#C9A96E', color: '#0F1A24', fontFamily: 'Manrope, sans-serif' }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
+          {/* Location label */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="uppercase mb-7 text-white/50"
+            style={{
+              fontFamily: 'Manrope, sans-serif',
+              fontWeight: 300,
+              fontSize: 'var(--label)',
+              letterSpacing: '0.38em',
+            }}
           >
-            Check Availability
-          </Link>
-          <Link
-            to="/villa"
-            className="px-12 py-4 border text-xs tracking-[0.25em] uppercase font-light transition-all duration-300 min-h-[52px] flex items-center"
-            style={{ borderColor: 'rgba(255,255,255,0.28)', color: 'rgba(255,255,255,0.82)', fontFamily: 'Manrope, sans-serif' }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.65)'; e.currentTarget.style.color = '#fff' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)'; e.currentTarget.style.color = 'rgba(255,255,255,0.82)' }}
-          >
-            Explore the Villa
-          </Link>
-        </motion.div>
+            Kassiopi &nbsp;&middot;&nbsp; Corfu &nbsp;&middot;&nbsp; Greece
+          </motion.p>
 
-        {/* Pills */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.95 }}
-          className="flex flex-wrap items-center justify-center gap-2"
-        >
-          {PILLS.map((pill) => (
-            <span
-              key={pill}
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-light tracking-wider text-white/65"
+          {/* Gold rule — 60px */}
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.28 }}
+            className="mx-auto mb-8 origin-center"
+            style={{ width: '60px', height: '1px', backgroundColor: '#C9A96E' }}
+          />
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.95, delay: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+            className="mx-auto mb-7 text-white"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              fontWeight: 300,
+              fontSize: 'clamp(4rem, 9vw, 8rem)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.02em',
+              maxWidth: '14ch',
+            }}
+          >
+            A Private Villa<br />
+            <span style={{ color: '#F0E8D8' }}>Above Kassiopi</span>
+          </motion.h1>
+
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.58 }}
+            className="mx-auto mb-10 text-white/60"
+            style={{
+              fontFamily: 'Manrope, sans-serif',
+              fontWeight: 300,
+              fontSize: 'clamp(0.875rem, 1.4vw, 1.05rem)',
+              maxWidth: '44ch',
+              lineHeight: 1.8,
+            }}
+          >
+            Three en-suite bedrooms, a private pool and sea views across to Albania —
+            just a short walk from Kassiopi harbour.
+          </motion.p>
+
+          {/* CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.72 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 text-xs tracking-[0.22em] uppercase font-medium transition-all duration-200 min-h-[52px]"
+              style={{ fontFamily: 'Manrope, sans-serif', backgroundColor: '#C9A96E', color: '#0F1A24' }}
+              onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
+              onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
+            >
+              Check Availability
+            </Link>
+            <Link
+              to="/villa"
+              className="inline-flex items-center justify-center px-10 py-4 text-xs tracking-[0.22em] uppercase font-light transition-all duration-200 min-h-[52px]"
               style={{
-                border: '1px solid rgba(201,169,110,0.32)',
-                backgroundColor: 'rgba(201,169,110,0.06)',
                 fontFamily: 'Manrope, sans-serif',
+                border: '1px solid rgba(255,255,255,0.38)',
+                color: 'rgba(255,255,255,0.82)',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.72)'
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.07)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.38)'
+                e.currentTarget.style.backgroundColor = 'transparent'
               }}
             >
-              <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: '#C9A96E' }} />
-              {pill}
-            </span>
-          ))}
-        </motion.div>
+              Explore the Villa
+            </Link>
+          </motion.div>
+
+          {/* Pills */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2"
+          >
+            {PILLS.map((pill, i) => (
+              <span
+                key={pill}
+                className="inline-flex items-center gap-2.5 text-white/45"
+                style={{
+                  fontFamily: 'Manrope, sans-serif',
+                  fontSize: '0.7rem',
+                  fontWeight: 300,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {i > 0 && (
+                  <span
+                    className="w-[3px] h-[3px] rounded-full flex-shrink-0"
+                    style={{ backgroundColor: '#C9A96E', opacity: 0.65 }}
+                  />
+                )}
+                {pill}
+              </span>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
+        className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+        style={{ bottom: '1.75rem', zIndex: 3 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
+        transition={{ delay: 1.4, duration: 0.7 }}
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }}
+          animate={{ y: [0, 7, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
         >
-          <ChevronDown size={18} style={{ color: 'rgba(255,255,255,0.28)' }} />
+          <ChevronDown size={18} style={{ color: 'rgba(255,255,255,0.32)' }} />
         </motion.div>
       </motion.div>
     </section>

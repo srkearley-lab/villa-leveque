@@ -1,23 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --villa-cream: #FAF8F4;
-  --villa-sand: #E8DFD0;
-  --villa-olive: #6B7C5C;
-  --villa-navy: #1C2B3A;
-  --villa-gold: #C9A96E;
-  --villa-white: #FFFFFF;
-  --villa-dark: #0F1A24;
-  --villa-text: #2C3E35;
+  --villa-cream:  #FAF8F4;
+  --villa-sand:   #E8DFD0;
+  --villa-stone:  #C4B9A8;
+  --villa-olive:  #6B7C5C;
+  --villa-navy:   #1C2B3A;
+  --villa-gold:   #C9A96E;
+  --villa-white:  #FFFFFF;
+  --villa-dark:   #0F1A24;
+  --villa-text:   #2C3E35;
 
-  /* Editorial type scale */
-  --display: clamp(4rem, 10vw, 8rem);
-  --h1:      clamp(3rem, 6.5vw, 5.5rem);
-  --h2:      clamp(2.25rem, 4.5vw, 3.5rem);
-  --h3:      clamp(1.5rem, 2.5vw, 2.25rem);
-  --body-lg: 1.0625rem;
-  --body:    0.9375rem;
+  /* Fluid type scale */
+  --hero:    clamp(3.5rem, 8vw, 7rem);
+  --h1:      clamp(2.75rem, 6vw, 5rem);
+  --h2:      clamp(2.5rem, 5vw, 4.5rem);
+  --h3:      clamp(1.5rem, 3vw, 2.5rem);
+  --h4:      clamp(1.25rem, 2vw, 1.75rem);
+  --body-lg: 1.125rem;
+  --body:    1rem;
   --caption: 0.8125rem;
+  --label:   0.75rem;
+
+  /* Spacing */
+  --section-y: clamp(5rem, 8vw, 8rem);
 }
 
 * {
@@ -33,12 +39,12 @@ html {
 
 body {
   font-family: 'Manrope', sans-serif;
-  font-size: var(--body);
+  font-size: var(--body-lg);
   background-color: var(--villa-cream);
   color: var(--villa-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.65;
+  line-height: 1.8;
 }
 
 h1, h2, h3, h4, h5 {
@@ -54,6 +60,7 @@ input, select, textarea {
   -webkit-appearance: none;
   appearance: none;
   border-radius: 0;
+  font-size: 1rem;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -67,7 +74,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-/* Scroll lock */
+/* Scroll lock for lightbox */
 body.lightbox-open { overflow: hidden; }
 
 img {
@@ -75,11 +82,11 @@ img {
   max-width: 100%;
 }
 
-/* Utility */
+/* Utility classes */
 .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* Film grain overlay — applied to hero */
+/* Film grain overlay */
 .grain::after {
   content: '';
   position: absolute;

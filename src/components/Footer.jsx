@@ -21,7 +21,7 @@ export default function Footer() {
     <footer style={{ backgroundColor: '#0F1A24', borderTop: '1px solid #C9A96E' }}>
       {/* Large wordmark */}
       <div
-        className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10"
+        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-16 pb-10"
         style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}
       >
         <Link to="/">
@@ -39,7 +39,7 @@ export default function Footer() {
       </div>
 
       {/* Three columns */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
 
           {/* About */}
@@ -139,7 +139,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div
-        className="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row justify-between items-center gap-3"
+        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-3"
         style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
       >
         <p

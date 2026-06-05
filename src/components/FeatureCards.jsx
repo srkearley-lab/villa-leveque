@@ -47,7 +47,7 @@ const FEATURES = [
 export default function FeatureCards() {
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: '#FAF8F4' }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Section header */}
         <div className="text-center mb-16">

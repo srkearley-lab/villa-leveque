@@ -22,7 +22,7 @@ export default function TrustBar() {
         borderColor: 'rgba(201,169,110,0.18)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 
           {/* Award badge */}

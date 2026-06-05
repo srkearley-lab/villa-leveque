@@ -14,7 +14,7 @@ export default function LocationPage() {
         />
         <div className="absolute inset-0" style={{ background: 'rgba(15,26,36,0.45)' }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 text-white w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 text-white w-full">
           <p
             className="text-xs tracking-[0.25em] uppercase mb-4 text-white/50"
             style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}

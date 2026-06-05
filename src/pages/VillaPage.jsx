@@ -233,7 +233,7 @@ export default function VillaPage() {
         />
         <div className="absolute inset-0" style={{ background: 'rgba(15,26,36,0.5)' }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 text-white w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 text-white w-full">
           <p
             className="text-xs tracking-[0.25em] uppercase mb-4 text-white/50"
             style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
@@ -258,7 +258,7 @@ export default function VillaPage() {
           scrollbarWidth: 'none',
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex items-center gap-0">
             {TABS.map((tab, i) => (
               <button
@@ -289,7 +289,7 @@ export default function VillaPage() {
 
       {/* Tab content with sticky sidebar */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-16">
 
             {/* Main tab content */}

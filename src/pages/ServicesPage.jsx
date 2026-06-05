@@ -167,7 +167,7 @@ export default function ServicesPage() {
             background: 'linear-gradient(to bottom, rgba(10,18,28,0.3) 0%, rgba(10,18,28,0.75) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 w-full text-white">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-20 w-full text-white">
           <p
             className="text-xs tracking-[0.28em] uppercase mb-5 text-white/45"
             style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
@@ -191,7 +191,7 @@ export default function ServicesPage() {
 
       {/* Intro */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
             <div>
               <p
@@ -225,7 +225,7 @@ export default function ServicesPage() {
 
       {/* Service cards — 2×2 luxury grid */}
       <section className="pb-0" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {SERVICES.map((service, i) => (
               <ServiceCard key={service.num} service={service} index={i} />

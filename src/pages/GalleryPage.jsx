@@ -27,7 +27,7 @@ export default function GalleryPage() {
             background: 'linear-gradient(to bottom, rgba(10,18,28,0.25) 0%, rgba(10,18,28,0.78) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 w-full text-white">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 w-full text-white">
           <p
             className="text-xs tracking-[0.28em] uppercase mb-5 text-white/45"
             style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
@@ -62,7 +62,7 @@ export default function GalleryPage() {
         className="py-8 border-b"
         style={{ backgroundColor: '#FAF8F4', borderColor: '#E8DFD0' }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <p
             className="text-sm"
             style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
@@ -75,7 +75,7 @@ export default function GalleryPage() {
 
       {/* Gallery */}
       <section className="py-16 md:py-20" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <GalleryGrid onImageClick={setLightboxIndex} />
         </div>
       </section>

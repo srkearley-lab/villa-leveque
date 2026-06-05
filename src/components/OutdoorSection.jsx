@@ -31,7 +31,7 @@ export default function OutdoorSection() {
 
       {/* Content overlay — panel on the right */}
       <div className="relative z-10 min-h-[600px] flex items-center justify-end">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-10 py-24 flex justify-end">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-24 flex justify-end">
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}

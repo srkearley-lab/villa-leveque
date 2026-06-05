@@ -14,7 +14,7 @@ const STRIP_IMAGES = [
 export default function GalleryStrip() {
   return (
     <section className="py-20 md:py-28" style={{ backgroundColor: '#FAF8F4' }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Heading */}
         <div className="text-center mb-12">

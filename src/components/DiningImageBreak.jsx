@@ -1,19 +1,19 @@
 import { motion } from 'framer-motion'
 import { IMAGES } from '../data/images'
 
-export default function PoolImageSection() {
+export default function DiningImageBreak() {
   return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.85 }}
       className="w-full overflow-hidden"
-      style={{ height: '60vh', minHeight: '360px' }}
+      style={{ height: '50vh', minHeight: '300px' }}
     >
       <img
-        src={IMAGES.pool[2].src}
-        alt="Private pool and terrace at Villa Leveque, Kassiopi"
+        src={IMAGES.dining[0].src}
+        alt="Outdoor dining terrace at Villa Leveque"
         className="w-full h-full object-cover"
         loading="lazy"
       />

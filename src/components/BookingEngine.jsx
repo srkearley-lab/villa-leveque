@@ -235,7 +235,7 @@ export default function BookingEngine({ compact = false }) {
 
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: '#FAF8F4' }}>
-      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="text-center mb-14">
           <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
           <p
