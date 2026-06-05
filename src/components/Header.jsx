@@ -77,19 +77,22 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <Link
               to="/contact"
-              className="hidden lg:inline-flex items-center px-5 py-2.5 text-xs tracking-[0.18em] uppercase font-medium border transition-all duration-300"
+              className="hidden lg:inline-flex items-center px-5 py-2 text-sm tracking-[0.08em] border transition-all duration-300"
               style={{
-                fontFamily: 'Manrope, sans-serif',
-                borderColor: solid ? '#1C2B3A' : 'rgba(255,255,255,0.5)',
-                color: solid ? '#1C2B3A' : '#ffffff',
+                fontFamily: "'Cormorant Garamond', serif",
+                fontStyle: 'italic',
+                fontWeight: 400,
+                borderColor: 'rgba(201,169,110,0.6)',
+                color: solid ? '#1C2B3A' : '#FAF8F4',
+                letterSpacing: '0.06em',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = solid ? '#1C2B3A' : 'rgba(255,255,255,0.15)'
-                e.currentTarget.style.color = solid ? '#FAF8F4' : '#ffffff'
+                e.currentTarget.style.borderColor = '#C9A96E'
+                e.currentTarget.style.backgroundColor = 'rgba(201,169,110,0.1)'
               }}
               onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(201,169,110,0.6)'
                 e.currentTarget.style.backgroundColor = 'transparent'
-                e.currentTarget.style.color = solid ? '#1C2B3A' : '#ffffff'
               }}
             >
               Check Availability
