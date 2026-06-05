@@ -1,123 +1,96 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { IMAGES } from '../data/images'
+import { ArrowRight } from 'lucide-react'
 
 const HIGHLIGHTS = [
-  'Kassiopi harbour & tavernas',
-  'Kassiopi beach (5 min drive)',
-  'Nissaki cove (15 min drive)',
-  'Corfu Town (45 min drive)',
-  'Boat hire & watersports',
-  'Local supermarket & shops',
+  { label: 'Kassiopi village', detail: '10 min walk' },
+  { label: 'Nearest beach', detail: '5 min drive' },
+  { label: 'Sea views to Albania', detail: 'From every terrace' },
+  { label: 'Quiet hillside setting', detail: 'Private & peaceful' },
 ]
 
 export default function LocationHighlight() {
   return (
     <section
       className="grid grid-cols-1 lg:grid-cols-2"
-      style={{ minHeight: '600px' }}
+      style={{ backgroundColor: '#5C6E50', minHeight: '520px' }}
     >
-      {/* Left — dark text panel */}
+      {/* Left — large headline */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.65 }}
         className="flex flex-col justify-center px-10 md:px-14 lg:px-20 py-20 md:py-28"
-        style={{ backgroundColor: '#1C2B3A' }}
       >
         <p
-          className="text-xs tracking-[0.22em] uppercase mb-4"
-          style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
+          className="uppercase mb-5"
+          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.7rem', color: 'rgba(250,248,244,0.5)', fontWeight: 300, letterSpacing: '0.3em' }}
         >
           Northeast Corfu
         </p>
-
+        <div className="w-8 h-px mb-8" style={{ backgroundColor: 'rgba(201,169,110,0.5)' }} />
         <h2
-          className="font-light leading-none mb-2"
+          className="font-light leading-tight"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: 'italic',
             color: '#FAF8F4',
-            fontSize: 'clamp(3.5rem, 7vw, 6rem)',
+            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+            lineHeight: 1.1,
           }}
         >
-          Kassiopi
+          10 minutes<br />from Kassiopi
         </h2>
-
         <p
-          className="text-sm mb-8"
-          style={{
-            fontFamily: 'Manrope, sans-serif',
-            color: 'rgba(250,248,244,0.35)',
-            fontWeight: 300,
-            letterSpacing: '0.05em',
-          }}
+          className="mt-6"
+          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.55)', fontWeight: 300, lineHeight: 1.85, maxWidth: '32ch' }}
         >
-          Northeast Corfu, Greece
-        </p>
-
-        <p
-          className="text-sm leading-relaxed mb-10 max-w-sm"
-          style={{
-            fontFamily: 'Manrope, sans-serif',
-            color: 'rgba(250,248,244,0.55)',
-            fontWeight: 300,
-            lineHeight: 1.9,
-          }}
-        >
-          One of Corfu's most beautiful and unspoilt villages, Kassiopi sits at the
-          northeastern tip of the island — surrounded by dramatic scenery, clear water
-          and a relaxed pace that makes it a favourite for discerning travellers.
-        </p>
-
-        {/* Highlights */}
-        <ul className="space-y-3 mb-10">
-          {HIGHLIGHTS.map(h => (
-            <li
-              key={h}
-              className="flex items-center gap-3 text-sm"
-              style={{
-                fontFamily: 'Manrope, sans-serif',
-                color: 'rgba(250,248,244,0.62)',
-                fontWeight: 300,
-              }}
-            >
-              <span
-                className="w-1 h-1 rounded-full flex-shrink-0"
-                style={{ backgroundColor: '#C9A96E' }}
-              />
-              {h}
-            </li>
-          ))}
-        </ul>
-
-        <p
-          className="text-xs tracking-[0.12em] uppercase"
-          style={{
-            fontFamily: 'Manrope, sans-serif',
-            color: '#C9A96E',
-            fontWeight: 500,
-          }}
-        >
-          10 minutes' walk from the villa
+          Close enough for evenings out in the village,
+          far enough for complete peace and privacy.
         </p>
       </motion.div>
 
-      {/* Right — sea view image */}
+      {/* Right — 4 highlights + CTA */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.65 }}
-        className="overflow-hidden"
-        style={{ minHeight: '500px' }}
+        transition={{ duration: 0.65, delay: 0.12 }}
+        className="flex flex-col justify-center px-10 md:px-14 lg:px-16 py-20 md:py-28"
+        style={{ borderLeft: '1px solid rgba(250,248,244,0.1)' }}
       >
-        <img
-          src={IMAGES.views[0].src}
-          alt="Aerial view of Kassiopi and Villa Leveque, northeast Corfu"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <ul className="space-y-0 mb-12" style={{ borderTop: '1px solid rgba(250,248,244,0.1)' }}>
+          {HIGHLIGHTS.map(({ label, detail }) => (
+            <li
+              key={label}
+              className="flex items-center justify-between py-5"
+              style={{ borderBottom: '1px solid rgba(250,248,244,0.1)' }}
+            >
+              <span
+                style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.75)', fontWeight: 300 }}
+              >
+                {label}
+              </span>
+              <span
+                style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.08em' }}
+              >
+                {detail}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <Link
+          to="/location"
+          className="inline-flex items-center gap-2 group self-start transition-colors duration-200"
+          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.55)', fontWeight: 400 }}
+          onMouseEnter={e => e.currentTarget.style.color = '#FAF8F4'}
+          onMouseLeave={e => e.currentTarget.style.color = 'rgba(250,248,244,0.55)'}
+        >
+          Explore Location
+          <ArrowRight size={11} className="transition-transform duration-200 group-hover:translate-x-1" />
+        </Link>
       </motion.div>
     </section>
   )

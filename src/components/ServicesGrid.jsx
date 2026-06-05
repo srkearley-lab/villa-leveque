@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const SERVICES = [
@@ -112,6 +114,26 @@ export default function ServicesGrid() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA link */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-14"
+        >
+          <Link
+            to="/services"
+            className="inline-flex items-center gap-2 group transition-colors duration-200"
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A96E', fontWeight: 500 }}
+            onMouseEnter={e => e.currentTarget.style.color = '#FAF8F4'}
+            onMouseLeave={e => e.currentTarget.style.color = '#C9A96E'}
+          >
+            View All Services
+            <ArrowRight size={12} className="transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

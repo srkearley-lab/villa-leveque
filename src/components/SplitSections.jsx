@@ -3,9 +3,23 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { IMAGES } from '../data/images'
 
-function SplitText({ label, heading, body, cta, ctaTo }) {
+function SplitText({ num, label, heading, body, cta, ctaTo }) {
   return (
     <div className="flex flex-col justify-center h-full px-10 md:px-14 lg:px-20 py-16 md:py-24">
+      {num && (
+        <span
+          className="block leading-none mb-4"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '5rem',
+            color: '#C9A96E',
+            opacity: 0.22,
+            fontWeight: 300,
+          }}
+        >
+          {num}
+        </span>
+      )}
       <p
         className="text-xs tracking-[0.22em] uppercase mb-5"
         style={{ fontFamily: 'Manrope, sans-serif', color: '#C9A96E', fontWeight: 500 }}
@@ -84,6 +98,7 @@ export default function SplitSections() {
           style={{ backgroundColor: '#1C2B3A' }}
         >
           <SplitText
+            num="01"
             label="Outdoor Living"
             heading="Your Private Outdoor Sanctuary"
             body="The front terrace centres around a fully refurbished private pool, surrounded by sun loungers, a shaded pergola lounge, swing chair and deck day bed. At the rear, a stone-built barbecue and al fresco dining area complete the picture."
@@ -104,6 +119,7 @@ export default function SplitSections() {
           style={{ backgroundColor: '#0F1A24' }}
         >
           <SplitText
+            num="02"
             label="Inside"
             heading="Thoughtfully Designed Interiors"
             body="Across two floors, Villa Leveque offers generous, comfortable living spaces. The open-plan ground floor flows from kitchen through dining to living — and straight out to the pool. Upstairs, three en-suite bedrooms each enjoy access to the first-floor balcony with views across the olive groves to the sea."

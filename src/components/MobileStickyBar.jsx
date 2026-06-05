@@ -36,23 +36,23 @@ export default function MobileStickyBar() {
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
           style={{
-            backgroundColor: '#0F1A24',
-            borderTop: '1px solid rgba(201,169,110,0.25)',
+            backgroundColor: '#C9A96E',
+            borderTop: 'none',
             paddingBottom: 'env(safe-area-inset-bottom, 0)',
           }}
         >
           <div className="px-4 py-3">
             <Link
               to="/contact"
-              className="flex items-center justify-center gap-2.5 w-full py-3.5 text-xs tracking-[0.2em] uppercase font-medium"
+              className="flex items-center justify-center gap-2.5 w-full py-3 text-xs tracking-[0.2em] uppercase font-medium"
               style={{
                 fontFamily: 'Manrope, sans-serif',
-                backgroundColor: '#C9A96E',
                 color: '#0F1A24',
+                minHeight: 56,
               }}
             >
               <Calendar size={13} />
-              Check Availability
+              Check Availability →
             </Link>
           </div>
         </motion.div>

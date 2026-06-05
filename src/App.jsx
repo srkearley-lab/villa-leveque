@@ -5,6 +5,7 @@ import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MobileStickyBar from './components/MobileStickyBar'
+import WhatsAppFloat from './components/WhatsAppFloat'
 import HomePage from './pages/HomePage'
 import VillaPage from './pages/VillaPage'
 import GalleryPage from './pages/GalleryPage'
@@ -45,6 +46,7 @@ function Layout() {
           </Routes>
         </motion.main>
       </AnimatePresence>
+      <WhatsAppFloat />
       <Footer />
     </>
   )

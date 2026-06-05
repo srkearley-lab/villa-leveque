@@ -45,7 +45,7 @@ export default function EnquirySection() {
             fontSize: 'clamp(2.25rem, 5.5vw, 3.75rem)',
           }}
         >
-          Plan Your Stay<br />in Kassiopi
+          Plan Your<br />Corfu Stay
         </motion.h2>
 
         <motion.p
