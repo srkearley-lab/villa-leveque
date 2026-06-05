@@ -35,8 +35,7 @@ export default function GalleryLightbox({ index, onClose, onPrev, onNext }) {
   const PREVIEW_COUNT = 5
   const half = Math.floor(PREVIEW_COUNT / 2)
   const thumbIndexes = Array.from({ length: PREVIEW_COUNT }, (_, i) => {
-    const idx = ((index - half + i) % ALL_IMAGES.length + ALL_IMAGES.length) % ALL_IMAGES.length
-    return idx
+    return ((index - half + i) % ALL_IMAGES.length + ALL_IMAGES.length) % ALL_IMAGES.length
   })
 
   return (
@@ -46,14 +45,15 @@ export default function GalleryLightbox({ index, onClose, onPrev, onNext }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.25 }}
         className="fixed inset-0 z-[100] flex flex-col"
-        style={{ backgroundColor: 'rgba(8,13,20,0.97)' }}
+        style={{ backgroundColor: 'rgba(0,0,0,0.95)' }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         {/* Top bar */}
-        <div className="flex items-center justify-between px-6 py-4 flex-shrink-0"
+        <div
+          className="flex items-center justify-between px-6 md:px-8 py-4 flex-shrink-0"
           style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
         >
           <div className="flex items-center gap-3">
@@ -65,7 +65,7 @@ export default function GalleryLightbox({ index, onClose, onPrev, onNext }) {
               Villa Leveque &nbsp;&middot;&nbsp; Gallery
             </p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <p
               className="text-xs text-white/25"
               style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
@@ -76,37 +76,44 @@ export default function GalleryLightbox({ index, onClose, onPrev, onNext }) {
               onClick={onClose}
               aria-label="Close lightbox"
               className="flex items-center justify-center w-9 h-9 transition-all duration-200"
-              style={{ border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.4)' }}
+              style={{ border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.45)' }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9A96E'; e.currentTarget.style.color = '#C9A96E' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)' }}
             >
-              <X size={14} />
+              <X size={15} />
             </button>
           </div>
         </div>
 
         {/* Main image area */}
-        <div className="flex-1 relative flex items-center justify-center px-4 py-6 min-h-0" onClick={onClose}>
-          {/* Nav — prev */}
+        <div
+          className="flex-1 relative flex items-center justify-center px-16 md:px-24 py-6 min-h-0"
+          onClick={onClose}
+        >
+          {/* Prev button */}
           <button
             onClick={e => { e.stopPropagation(); onPrev() }}
             aria-label="Previous image"
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 transition-all duration-200"
-            style={{ border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.5)', backgroundColor: 'rgba(15,26,36,0.4)' }}
+            className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-14 h-14 transition-all duration-200"
+            style={{
+              border: '1px solid rgba(255,255,255,0.14)',
+              color: 'rgba(255,255,255,0.55)',
+              backgroundColor: 'rgba(0,0,0,0.3)',
+            }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9A96E'; e.currentTarget.style.color = '#C9A96E' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)' }}
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={22} />
           </button>
 
-          {/* Image */}
+          {/* Image with fade */}
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.975 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.985 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
               className="flex flex-col items-center"
               style={{ maxHeight: '100%' }}
               onClick={e => e.stopPropagation()}
@@ -116,34 +123,39 @@ export default function GalleryLightbox({ index, onClose, onPrev, onNext }) {
                 alt={image.alt}
                 className="object-contain"
                 style={{
-                  maxHeight: 'calc(100vh - 220px)',
-                  maxWidth: '100%',
-                  boxShadow: '0 32px 100px rgba(0,0,0,0.7)',
+                  maxHeight: '90vh',
+                  maxWidth: '90vw',
+                  boxShadow: '0 24px 80px rgba(0,0,0,0.7)',
                 }}
               />
+              {/* Caption */}
               <div className="flex items-center gap-4 mt-5">
-                <div className="h-px w-6 flex-shrink-0" style={{ backgroundColor: '#C9A96E', opacity: 0.6 }} />
+                <div className="h-px w-6 flex-shrink-0" style={{ backgroundColor: '#C9A96E', opacity: 0.55 }} />
                 <p
                   className="text-xs text-center"
-                  style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(255,255,255,0.3)', fontWeight: 300, letterSpacing: '0.04em' }}
+                  style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(255,255,255,0.32)', fontWeight: 300, letterSpacing: '0.04em' }}
                 >
                   {image.alt}
                 </p>
-                <div className="h-px w-6 flex-shrink-0" style={{ backgroundColor: '#C9A96E', opacity: 0.6 }} />
+                <div className="h-px w-6 flex-shrink-0" style={{ backgroundColor: '#C9A96E', opacity: 0.55 }} />
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Nav — next */}
+          {/* Next button */}
           <button
             onClick={e => { e.stopPropagation(); onNext() }}
             aria-label="Next image"
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 transition-all duration-200"
-            style={{ border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.5)', backgroundColor: 'rgba(15,26,36,0.4)' }}
+            className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-14 h-14 transition-all duration-200"
+            style={{
+              border: '1px solid rgba(255,255,255,0.14)',
+              color: 'rgba(255,255,255,0.55)',
+              backgroundColor: 'rgba(0,0,0,0.3)',
+            }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9A96E'; e.currentTarget.style.color = '#C9A96E' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)' }}
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={22} />
           </button>
         </div>
 
@@ -168,7 +180,7 @@ export default function GalleryLightbox({ index, onClose, onPrev, onNext }) {
               style={{
                 width: thumbIdx === index ? 56 : 44,
                 height: thumbIdx === index ? 40 : 32,
-                opacity: thumbIdx === index ? 1 : 0.38,
+                opacity: thumbIdx === index ? 1 : 0.35,
                 border: thumbIdx === index ? '1px solid #C9A96E' : '1px solid transparent',
               }}
             >

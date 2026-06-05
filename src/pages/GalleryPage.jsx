@@ -1,9 +1,9 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import GalleryGrid from '../components/GalleryGrid'
 import GalleryLightbox from '../components/GalleryLightbox'
 import { ALL_IMAGES, IMAGES } from '../data/images'
-import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
 
 export default function GalleryPage() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
@@ -14,8 +14,8 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* Cinematic header with hero image */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: '52vh' }}>
+      {/* Page hero */}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: '55vh' }}>
         <img
           src={IMAGES.pool[0].src}
           alt="Villa Leveque pool and terrace"
@@ -23,19 +23,17 @@ export default function GalleryPage() {
         />
         <div
           className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(10,18,28,0.25) 0%, rgba(10,18,28,0.78) 100%)',
-          }}
+          style={{ background: 'linear-gradient(to bottom, rgba(10,18,28,0.2) 0%, rgba(10,18,28,0.75) 100%)' }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 w-full text-white">
           <p
-            className="text-xs tracking-[0.28em] uppercase mb-5 text-white/45"
-            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
+            className="uppercase mb-5 text-white/40"
+            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.7rem', letterSpacing: '0.32em' }}
           >
             Photography
           </p>
-          <div className="w-8 h-px mb-7" style={{ backgroundColor: '#C9A96E' }} />
-          <div className="flex items-end gap-8 flex-wrap">
+          <div className="w-10 h-px mb-6" style={{ backgroundColor: '#C9A96E' }} />
+          <div className="flex items-end gap-6 flex-wrap">
             <h1
               className="font-light"
               style={{
@@ -48,8 +46,8 @@ export default function GalleryPage() {
               Gallery
             </h1>
             <p
-              className="text-sm pb-2 text-white/45"
-              style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
+              className="pb-1 text-white/40"
+              style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.85rem' }}
             >
               {total} photographs
             </p>
@@ -57,31 +55,31 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Intro line */}
-      <div
-        className="py-8 border-b"
-        style={{ backgroundColor: '#FAF8F4', borderColor: '#E8DFD0' }}
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+      {/* Keyboard hint bar */}
+      <div className="py-5 border-b" style={{ backgroundColor: '#FAF8F4', borderColor: '#E8DFD0' }}>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between flex-wrap gap-3">
           <p
-            className="text-sm"
-            style={{ fontFamily: 'Manrope, sans-serif', color: '#9aA090', fontWeight: 300 }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.8rem', color: '#9aA090', fontWeight: 300 }}
           >
-            Browse all photographs of Villa Leveque — pool and terraces, bedrooms, living spaces, views and exterior.
-            Click any image to view full-screen. Use arrow keys to navigate.
+            Browse all spaces — pool, bedrooms, living areas, views and gardens.
+          </p>
+          <p
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', color: '#C4B9A8', fontWeight: 300, letterSpacing: '0.06em' }}
+          >
+            Click to open · Arrow keys to navigate · Esc to close
           </p>
         </div>
       </div>
 
-      {/* Gallery */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#FAF8F4' }}>
+      {/* Gallery grid */}
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#FAF8F4' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <GalleryGrid onImageClick={setLightboxIndex} />
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 text-center" style={{ backgroundColor: '#1C2B3A' }}>
+      <section className="py-24 text-center" style={{ backgroundColor: '#1C2B3A' }}>
         <div className="max-w-xl mx-auto px-6">
           <div className="w-8 h-px mx-auto mb-10" style={{ backgroundColor: '#C9A96E' }} />
           <h2
@@ -96,8 +94,8 @@ export default function GalleryPage() {
             Like What You See?
           </h2>
           <p
-            className="text-sm font-light mb-10 leading-relaxed"
-            style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.45)', fontWeight: 300 }}
+            className="font-light mb-10 leading-relaxed"
+            style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(250,248,244,0.45)', fontWeight: 300, fontSize: '0.9rem' }}
           >
             Check availability for your preferred dates and we'll take care of the rest.
           </p>

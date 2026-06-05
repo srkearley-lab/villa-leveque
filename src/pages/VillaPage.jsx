@@ -226,25 +226,34 @@ export default function VillaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-[65vh] min-h-[460px] flex items-end overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${IMAGES.exterior[0].src})` }}
+      <section className="relative overflow-hidden flex items-end" style={{ height: '70vh', minHeight: '480px' }}>
+        <img
+          src={IMAGES.pool[0].src}
+          alt="Villa Leveque pool and terrace"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0" style={{ background: 'rgba(15,26,36,0.5)' }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to bottom, rgba(15,26,36,0.15) 0%, rgba(15,26,36,0.75) 100%)' }}
+        />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 text-white w-full">
           <p
-            className="text-xs tracking-[0.25em] uppercase mb-4 text-white/50"
-            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300 }}
+            className="uppercase mb-5 text-white/45"
+            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.7rem', letterSpacing: '0.32em' }}
           >
             Villa Leveque
           </p>
+          <div className="w-10 h-px mb-6" style={{ backgroundColor: '#C9A96E' }} />
           <h1
-            className="text-5xl md:text-6xl lg:text-7xl font-light"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic' }}
+            className="font-light"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              fontSize: 'clamp(3rem, 7vw, 5.5rem)',
+              lineHeight: 1.04,
+            }}
           >
-            Inside the Villa
+            Inside Villa Leveque
           </h1>
         </div>
       </section>
