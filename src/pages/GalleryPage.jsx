@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import GalleryGrid from '../components/GalleryGrid'
 import GalleryLightbox from '../components/GalleryLightbox'
+import PageHero from '../components/PageHero'
 import { ALL_IMAGES, IMAGES } from '../data/images'
 
 export default function GalleryPage() {
@@ -14,50 +15,19 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* Page hero */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: '55vh' }}>
-        <img
-          src={IMAGES.pool[0].src}
-          alt="Villa Leveque pool and terrace"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to bottom, rgba(10,18,28,0.2) 0%, rgba(10,18,28,0.75) 100%)' }}
-        />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 w-full text-white">
-          <p
-            className="uppercase mb-5 text-white/40"
-            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.7rem', letterSpacing: '0.32em' }}
-          >
-            Photography
-          </p>
-          <div className="w-10 h-px mb-6" style={{ backgroundColor: '#C9A96E' }} />
-          <div className="flex items-end gap-6 flex-wrap">
-            <h1
-              className="font-light"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: 'italic',
-                fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-                lineHeight: 1.04,
-              }}
-            >
-              Gallery
-            </h1>
-            <p
-              className="pb-1 text-white/40"
-              style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.85rem' }}
-            >
-              {total} photographs
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image={IMAGES.pool[0].src}
+        alt="Villa Leveque pool and terrace"
+        height="55vh"
+        minHeight="400px"
+        label="Photography"
+        title="Gallery"
+        subtitle={`${total} photographs — pool, bedrooms, living areas, views and gardens.`}
+      />
 
       {/* Keyboard hint bar */}
       <div className="py-5 border-b" style={{ backgroundColor: '#FAF8F4', borderColor: '#E8DFD0' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between flex-wrap gap-3">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between flex-wrap gap-3">
           <p
             style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.8rem', color: '#9aA090', fontWeight: 300 }}
           >
@@ -73,7 +43,7 @@ export default function GalleryPage() {
 
       {/* Gallery grid */}
       <section className="py-12 md:py-16" style={{ backgroundColor: '#FAF8F4' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
           <GalleryGrid onImageClick={setLightboxIndex} />
         </div>
       </section>

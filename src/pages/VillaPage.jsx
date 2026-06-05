@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Wifi, Wind, Waves, Utensils, Car, Tv, BedDouble, ShowerHead } from 'lucide-react'
 import AmenityGroups from '../components/AmenityGroups'
+import PageHero from '../components/PageHero'
+import BookingEngine from '../components/BookingEngine'
 import { IMAGES } from '../data/images'
 
 const SectionLabel = ({ children }) => (
@@ -225,38 +227,15 @@ export default function VillaPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden flex items-end" style={{ height: '70vh', minHeight: '480px' }}>
-        <img
-          src={IMAGES.pool[0].src}
-          alt="Villa Leveque pool and terrace"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to bottom, rgba(15,26,36,0.15) 0%, rgba(15,26,36,0.75) 100%)' }}
-        />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 text-white w-full">
-          <p
-            className="uppercase mb-5 text-white/45"
-            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.7rem', letterSpacing: '0.32em' }}
-          >
-            Villa Leveque
-          </p>
-          <div className="w-10 h-px mb-6" style={{ backgroundColor: '#C9A96E' }} />
-          <h1
-            className="font-light"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: 'italic',
-              fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-              lineHeight: 1.04,
-            }}
-          >
-            Inside Villa Leveque
-          </h1>
-        </div>
-      </section>
+      <PageHero
+        image={IMAGES.pool[0].src}
+        alt="Villa Leveque pool and terrace, Kassiopi"
+        height="70vh"
+        minHeight="480px"
+        label="Villa Leveque · Kassiopi, Corfu"
+        title="Inside Villa Leveque"
+        subtitle="Three en-suite bedrooms, private pool and generous terraces above Kassiopi harbour."
+      />
 
       {/* Tab navigation */}
       <div
@@ -375,38 +354,7 @@ export default function VillaPage() {
                   ))}
                 </div>
 
-                <p
-                  className="text-xs tracking-[0.12em] uppercase mb-4"
-                  style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 500 }}
-                >
-                  Key Amenities
-                </p>
-                <ul className="space-y-2.5 mb-8">
-                  {SIDEBAR_AMENITIES.map(a => (
-                    <li
-                      key={a.label}
-                      className="flex items-center gap-2.5 text-xs"
-                      style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300 }}
-                    >
-                      <span style={{ color: '#C9A96E', flexShrink: 0 }}>{a.icon}</span>
-                      {a.label}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/contact"
-                  className="flex items-center justify-center gap-2 w-full py-3.5 text-xs tracking-[0.18em] uppercase font-medium transition-all duration-200"
-                  style={{
-                    fontFamily: 'Manrope, sans-serif',
-                    backgroundColor: '#C9A96E',
-                    color: '#0F1A24',
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
-                  onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
-                >
-                  Enquire Now <ArrowRight size={12} />
-                </Link>
+                <BookingEngine compact />
               </div>
             </div>
           </div>

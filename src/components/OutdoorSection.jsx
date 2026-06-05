@@ -54,11 +54,12 @@ export default function OutdoorSection() {
             </p>
 
             <h2
-              className="text-4xl md:text-5xl font-light leading-tight mb-6"
+              className="font-light leading-tight mb-6"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontStyle: 'italic',
                 color: '#FAF8F4',
+                fontSize: 'clamp(2rem, 4vw, 3.25rem)',
               }}
             >
               The Pool,<br />Terrace & Garden

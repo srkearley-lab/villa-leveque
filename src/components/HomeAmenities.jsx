@@ -1,64 +1,94 @@
 import { motion } from 'framer-motion'
 import { Waves, BedDouble, Eye, Flame, Wifi, Headphones, Car, Armchair } from 'lucide-react'
+import SectionContainer from './SectionContainer'
+import AmenityCard from './AmenityCard'
 
 const AMENITIES = [
-  { icon: Waves,      label: 'Private Pool' },
-  { icon: BedDouble,  label: '3 Bedrooms' },
-  { icon: Eye,        label: 'Sea Views' },
-  { icon: Flame,      label: 'BBQ & Dining' },
-  { icon: Wifi,       label: 'Wi-Fi & Sonos' },
-  { icon: Headphones, label: 'Concierge' },
-  { icon: Car,        label: 'Parking' },
-  { icon: Armchair,   label: 'Balcony & Terrace' },
+  {
+    icon: Waves,
+    title: 'Private Pool',
+    desc: 'Heated private pool on the front terrace with sun loungers, pergola seating and panoramic sea views.',
+  },
+  {
+    icon: BedDouble,
+    title: '3 En-Suite Bedrooms',
+    desc: 'Three generous bedrooms each with private bathroom, air conditioning and terrace or balcony access.',
+  },
+  {
+    icon: Eye,
+    title: 'Sea Views',
+    desc: 'Uninterrupted views across the Ionian Sea towards the Albanian mountains from every main room.',
+  },
+  {
+    icon: Flame,
+    title: 'BBQ & Al Fresco Dining',
+    desc: 'Stone-built outdoor kitchen with BBQ and a pergola-shaded dining terrace for eight.',
+  },
+  {
+    icon: Wifi,
+    title: 'Wi-Fi & Sonos',
+    desc: 'High-speed Wi-Fi throughout the villa and gardens, plus a Sonos system for poolside music.',
+  },
+  {
+    icon: Headphones,
+    title: 'Concierge Service',
+    desc: 'Personal concierge on hand throughout your stay for restaurant bookings, boat hire and arrangements.',
+  },
+  {
+    icon: Car,
+    title: 'Private Parking',
+    desc: 'Secure off-road parking for two vehicles within the villa grounds.',
+  },
+  {
+    icon: Armchair,
+    title: 'Balcony & Terrace',
+    desc: 'First-floor balcony and wraparound terrace with garden, pool and sea outlooks.',
+  },
 ]
 
 export default function HomeAmenities() {
   return (
-    <section className="py-20 md:py-24" style={{ backgroundColor: '#FAF8F4', borderTop: '1px solid #E8DFD0' }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+    <SectionContainer bg="cream" spacing="lg" style={{ borderTop: '1px solid #E8DFD0' }}>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-12"
+      >
+        <p
+          className="uppercase"
+          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.7rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.28em' }}
         >
-          <p
-            className="uppercase mb-0"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.28em' }}
-          >
-            At a Glance
-          </p>
-        </motion.div>
+          Included at the Villa
+        </p>
+        <h2
+          className="font-light mt-4"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: 'italic',
+            color: '#1C2B3A',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+          }}
+        >
+          Everything You Need
+        </h2>
+      </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {AMENITIES.map(({ icon: Icon, label }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.05 }}
-              className="flex flex-col items-center gap-4 py-8 px-4 text-center"
-              style={{ border: '1px solid #E8DFD0', backgroundColor: '#FFFFFF' }}
-            >
-              <Icon size={22} style={{ color: '#C9A96E' }} strokeWidth={1.5} />
-              <p
-                style={{
-                  fontFamily: 'Manrope, sans-serif',
-                  fontSize: '0.8rem',
-                  color: '#1C2B3A',
-                  fontWeight: 400,
-                  letterSpacing: '0.04em',
-                }}
-              >
-                {label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {AMENITIES.map(({ icon, title, desc }, i) => (
+          <motion.div
+            key={title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: i * 0.055 }}
+          >
+            <AmenityCard icon={icon} title={title} desc={desc} variant="full" />
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </SectionContainer>
   )
 }

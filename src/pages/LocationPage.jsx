@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, MapPin, Anchor, Waves, Utensils, Ship, Clock, ShoppingBag, Sunset } from 'lucide-react'
+import PageHero from '../components/PageHero'
 import { IMAGES } from '../data/images'
 
 const HIGHLIGHTS = [
@@ -48,38 +49,16 @@ const THINGS_TO_DO = [
 export default function LocationPage() {
   return (
     <>
-      {/* Section A — Hero */}
-      <section className="relative flex items-end overflow-hidden" style={{ height: '65vh', minHeight: '440px' }}>
-        <img
-          src={IMAGES.views[4].src}
-          alt="Aerial view of Kassiopi bay and coastline, Corfu"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to bottom, rgba(15,26,36,0.15) 0%, rgba(15,26,36,0.72) 100%)' }}
-        />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16 text-white w-full">
-          <p
-            className="uppercase mb-5 text-white/40"
-            style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.7rem', letterSpacing: '0.32em' }}
-          >
-            North-East Corfu
-          </p>
-          <div className="w-10 h-px mb-6" style={{ backgroundColor: '#C9A96E' }} />
-          <h1
-            className="font-light"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: 'italic',
-              fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-              lineHeight: 1.04,
-            }}
-          >
-            Kassiopi,<br />Northeast Corfu
-          </h1>
-        </div>
-      </section>
+      <PageHero
+        image={IMAGES.views[4].src}
+        alt="Aerial view of Kassiopi bay and coastline, Corfu"
+        height="65vh"
+        minHeight="440px"
+        label="North-East Corfu"
+        title="Kassiopi,"
+        titleBreak="Northeast Corfu"
+        subtitle="One of Corfu's most beautiful and unspoilt villages — clear water, harbour tavernas and relaxed pace."
+      />
 
       {/* Section A — Two-column intro */}
       <section className="py-24 md:py-32" style={{ backgroundColor: '#FAF8F4' }}>
