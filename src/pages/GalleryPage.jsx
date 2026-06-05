@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
-import GalleryGrid     from '../components/GalleryGrid'
-import GalleryLightbox from '../components/GalleryLightbox'
-import PageHero        from '../components/PageHero'
+import GalleryGrid      from '../components/GalleryGrid'
+import GalleryLightbox  from '../components/GalleryLightbox'
+import PageHero         from '../components/PageHero'
 import SectionContainer from '../components/SectionContainer'
-import CTAButton       from '../components/CTAButton'
+import CTAButton        from '../components/CTAButton'
 import { ALL_IMAGES, IMAGES } from '../data/images'
+
+const CATEGORY_PREVIEWS = [
+  { img: IMAGES.pool[0],     label: 'Pool & Terrace', count: 5  },
+  { img: IMAGES.bedrooms[0], label: 'Bedrooms',       count: 11 },
+  { img: IMAGES.living[0],   label: 'Living Areas',   count: 8  },
+  { img: IMAGES.views[0],    label: 'Views & Aerial', count: 5  },
+]
 
 export default function GalleryPage() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
@@ -16,7 +23,7 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* Hero — aerial view opens the gallery dramatically */}
+      {/* Hero */}
       <PageHero
         image={IMAGES.views[0].src}
         alt="Aerial view of Villa Leveque, Kassiopi, Corfu"
@@ -27,19 +34,44 @@ export default function GalleryPage() {
         subtitle={`${total} photographs — pool, bedrooms, living areas, views and gardens.`}
       />
 
-      {/* Divider bar — categories hint */}
+      {/* Category preview */}
+      <SectionContainer bg="white" spacing="sm">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {CATEGORY_PREVIEWS.map(({ img, label, count }) => (
+            <div key={label} className="relative overflow-hidden group cursor-pointer" style={{ aspectRatio: '3 / 2' }}>
+              <img
+                src={img.src}
+                alt={label}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                loading="eager"
+              />
+              <div
+                className="absolute inset-0 flex flex-col items-start justify-end p-4"
+                style={{ background: 'linear-gradient(to top, rgba(15,26,36,0.7) 0%, transparent 60%)' }}
+              >
+                <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#FAF8F4', fontWeight: 500, letterSpacing: '0.06em' }}>
+                  {label}
+                </p>
+                <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.65rem', color: 'rgba(250,248,244,0.55)', fontWeight: 300, marginTop: 2 }}>
+                  {count} photos
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionContainer>
+
+      {/* Instruction bar */}
       <div style={{ backgroundColor: '#FAF8F4', borderBottom: '1px solid #E8DFD0' }}>
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-4 flex items-center justify-between gap-4">
-          <p
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#9aA090', fontWeight: 300 }}
-          >
-            Browse by space — filter above the grid to explore each area of the villa.
+          <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#9aA090', fontWeight: 300 }}>
+            Filter by room type using the tabs below, or browse the full collection.
           </p>
           <p
             className="hidden md:block flex-shrink-0"
             style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C4B9A8', fontWeight: 300, letterSpacing: '0.06em' }}
           >
-            Touch or click any image to open fullscreen
+            Click any image to open fullscreen
           </p>
         </div>
       </div>
@@ -61,12 +93,7 @@ export default function GalleryPage() {
           </p>
           <h2
             className="font-light mb-5"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 'clamp(2rem, 4vw, 3.25rem)',
-              color: '#FAF8F4',
-              fontWeight: 300,
-            }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#FAF8F4', fontWeight: 300 }}
           >
             Like What You See?
           </h2>
