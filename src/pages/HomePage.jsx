@@ -2,16 +2,16 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Hero from '../components/Hero'
+import TrustBar from '../components/TrustBar'
 import FeatureCards from '../components/FeatureCards'
 import BookingEngine from '../components/BookingEngine'
 import ServiceCards from '../components/ServiceCards'
-import LocationSection from '../components/LocationSection'
+import OutdoorSection from '../components/OutdoorSection'
+import PremiumLocation from '../components/PremiumLocation'
 import GalleryGrid from '../components/GalleryGrid'
 import GalleryLightbox from '../components/GalleryLightbox'
 import { IMAGES } from '../data/images'
 import { ArrowRight } from 'lucide-react'
-
-const OUTDOOR_IMAGES = [IMAGES.pool[0], IMAGES.pool[1], IMAGES.dining[0]]
 
 const SectionLabel = ({ children }) => (
   <p
@@ -57,11 +57,18 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 2. Intro */}
+      {/* 2. Trust bar */}
+      <TrustBar />
+
+      {/* 3. Intro */}
       <section className="pt-20 pb-16 md:pt-28 md:pb-20" style={{ backgroundColor: '#FAF8F4' }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <SectionLabel>Villa Leveque</SectionLabel>
-          <blockquote
+          <motion.blockquote
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65 }}
             className="text-3xl md:text-4xl font-light leading-snug"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -72,33 +79,37 @@ export default function HomePage() {
             &ldquo;Set among olive and cypress trees with views stretching towards the sea and
             Albania beyond, Villa Leveque is designed for slow mornings, sun-filled afternoons
             and relaxed evenings outdoors.&rdquo;
-          </blockquote>
+          </motion.blockquote>
         </div>
       </section>
 
       <GoldDivider />
 
-      {/* 3. Feature Cards */}
+      {/* 4. Feature Cards */}
       <FeatureCards />
 
       <GoldDivider />
 
-      {/* 4. Full booking section */}
+      {/* 5. Full booking section */}
       <BookingEngine />
 
       <GoldDivider />
 
-      {/* 5. The Villa Preview */}
+      {/* 6. The Villa Preview */}
       <section className="py-24 md:py-32" style={{ backgroundColor: '#FAF8F4' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-16">
             <SectionLabel>Inside</SectionLabel>
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl font-light"
               style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
             >
               The Villa
-            </h2>
+            </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -115,19 +126,20 @@ export default function HomePage() {
                 title: 'Three En-Suite Bedrooms',
                 desc: 'Three beautifully appointed bedrooms, each with its own private bathroom and balcony or terrace access with views over the gardens and sea.',
               },
-            ].map(({ img, label, title, desc }) => (
+            ].map(({ img, label, title, desc }, i) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="relative overflow-hidden group"
               >
                 <img
                   src={img.src}
                   alt={img.alt}
                   className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -171,86 +183,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      <GoldDivider />
+      {/* 7. Outdoor Living — full-width dramatic section */}
+      <OutdoorSection />
 
-      {/* 6. Outdoor Living */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#E8DFD0' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <SectionLabel>Outdoor Living</SectionLabel>
-              <h2
-                className="text-4xl md:text-5xl font-light mb-8"
-                style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
-              >
-                The Pool, Terrace<br />& Garden
-              </h2>
-              <div className="space-y-5">
-                {[
-                  `The heart of Villa Leveque is its sun-drenched terrace. The private pool stretches alongside a broad stone deck lined with sun loungers, perfectly positioned to catch the afternoon sun and the prevailing sea breeze.`,
-                  `A generous pergola provides dappled shade over the outdoor dining table — ideal for long, unhurried lunches and candlelit dinners beneath the stars. The built-in BBQ sits nearby, ready for evening grills.`,
-                  `The garden is planted with mature olive, cypress and bougainvillea, creating a natural sense of seclusion without obscuring the sweeping views across the sea.`,
-                ].map((para, i) => (
-                  <p
-                    key={i}
-                    className="text-sm leading-relaxed"
-                    style={{ fontFamily: 'Manrope, sans-serif', color: '#6B7C5C', fontWeight: 300, lineHeight: 1.9 }}
-                  >
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="grid grid-cols-2 gap-3"
-            >
-              {OUTDOOR_IMAGES.map((img, i) => (
-                <div
-                  key={img.src}
-                  className={`overflow-hidden ${i === 0 ? 'col-span-2' : ''}`}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className={`w-full object-cover transition-transform duration-700 hover:scale-[1.04] ${i === 0 ? 'aspect-[16/7]' : 'aspect-square'}`}
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Services — dark navy */}
+      {/* 8. Services — dark navy */}
       <ServiceCards />
 
-      {/* 8. Location */}
-      <LocationSection />
+      {/* 9. Location — dark navy premium section */}
+      <PremiumLocation />
 
-      {/* Gold divider */}
-      <GoldDivider />
+      <div style={{ backgroundColor: '#FAF8F4' }}>
+        <GoldDivider />
+      </div>
 
-      {/* 9. Gallery Preview */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#FAF8F4' }}>
+      {/* 10. Gallery Preview */}
+      <section className="pb-24 md:pb-32" style={{ backgroundColor: '#FAF8F4' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-14">
             <SectionLabel>Photography</SectionLabel>
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl font-light"
               style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1C2B3A' }}
             >
               See the Villa
-            </h2>
+            </motion.h2>
           </div>
 
           <GalleryGrid limit={9} onImageClick={setLightboxIndex} />
@@ -279,7 +239,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. Final CTA */}
+      {/* 11. Final CTA */}
       <section className="py-28 md:py-36 text-white text-center" style={{ backgroundColor: '#0F1A24' }}>
         <div className="max-w-2xl mx-auto px-6">
           <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
@@ -289,12 +249,16 @@ export default function HomePage() {
           >
             Corfu, Greece
           </p>
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-5xl md:text-6xl font-light mb-6"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic' }}
           >
             Ready to Plan<br />Your Corfu Stay?
-          </h2>
+          </motion.h2>
           <p
             className="text-sm leading-relaxed mb-12 max-w-md mx-auto"
             style={{ fontFamily: 'Manrope, sans-serif', color: 'rgba(255,255,255,0.45)', fontWeight: 300 }}

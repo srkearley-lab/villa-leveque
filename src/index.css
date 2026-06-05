@@ -45,6 +45,12 @@ body.lightbox-open {
   display: block;
 }
 
+/* Smooth image rendering */
+img {
+  display: block;
+  max-width: 100%;
+}
+
 /* Date input styling */
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.5;
@@ -55,4 +61,20 @@ input[type="date"]:focus,
 select:focus {
   border-color: var(--villa-gold) !important;
   outline: none;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile bottom padding for sticky bar */
+@media (max-width: 768px) {
+  main {
+    padding-bottom: 64px;
+  }
 }
