@@ -49,10 +49,10 @@ export default function GalleryPage() {
                 className="absolute inset-0 flex flex-col items-start justify-end p-4"
                 style={{ background: 'linear-gradient(to top, rgba(15,26,36,0.7) 0%, transparent 60%)' }}
               >
-                <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#FAF8F4', fontWeight: 500, letterSpacing: '0.06em' }}>
+                <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: '#FAF8F4', fontWeight: 500, letterSpacing: '0.06em' }}>
                   {label}
                 </p>
-                <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.65rem', color: 'rgba(250,248,244,0.55)', fontWeight: 300, marginTop: 2 }}>
+                <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(250,248,244,0.55)', fontWeight: 300, marginTop: 2 }}>
                   {count} photos
                 </p>
               </div>
@@ -63,13 +63,13 @@ export default function GalleryPage() {
 
       {/* Instruction bar */}
       <div style={{ backgroundColor: '#FAF8F4', borderBottom: '1px solid #E8DFD0' }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-4 flex items-center justify-between gap-4">
-          <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#9aA090', fontWeight: 300 }}>
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 py-4 flex items-center justify-between gap-4">
+          <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: '#9aA090', fontWeight: 300 }}>
             Filter by room type using the tabs below, or browse the full collection.
           </p>
           <p
             className="hidden md:block flex-shrink-0"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C4B9A8', fontWeight: 300, letterSpacing: '0.06em' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C4B9A8', fontWeight: 300, letterSpacing: '0.06em' }}
           >
             Click any image to open fullscreen
           </p>
@@ -87,7 +87,7 @@ export default function GalleryPage() {
           <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
           <p
             className="uppercase mb-4"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
           >
             Availability
           </p>
@@ -99,7 +99,7 @@ export default function GalleryPage() {
           </h2>
           <p
             className="mb-10 mx-auto"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '40ch' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '40ch' }}
           >
             Check availability for your preferred dates and we'll take care of the rest.
           </p>

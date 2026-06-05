@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+// shadcn/ui-style variant system — applied to villa brand colours
 const VARIANTS = {
   primary: {
     base:  { backgroundColor: '#C9A96E', color: '#0F1A24', border: 'none' },
@@ -11,34 +12,22 @@ const VARIANTS = {
     hover: { backgroundColor: '#1C2B3A', color: '#FAF8F4' },
   },
   'outline-light': {
-    base:  { backgroundColor: 'transparent', color: 'rgba(250,248,244,0.72)', border: '1px solid rgba(255,255,255,0.32)' },
-    hover: { backgroundColor: 'rgba(255,255,255,0.07)', color: '#FAF8F4', border: '1px solid rgba(255,255,255,0.58)' },
+    base:  { backgroundColor: 'transparent', color: 'rgba(250,248,244,0.80)', border: '1px solid rgba(255,255,255,0.35)' },
+    hover: { backgroundColor: 'rgba(255,255,255,0.08)', color: '#FAF8F4', border: '1px solid rgba(255,255,255,0.65)' },
   },
   ghost: {
     base:  { backgroundColor: 'transparent', color: '#C9A96E', border: 'none' },
-    hover: { color: '#FAF8F4' },
+    hover: { color: '#1C2B3A' },
   },
 }
 
+// Sizes calibrated to minimum 44px touch target (WCAG 2.5.5)
 const SIZES = {
-  sm: { padding: 'px-5 py-2.5', minHeight: '36px' },
-  md: { padding: 'px-7 py-3',   minHeight: '44px' },
-  lg: { padding: 'px-10 py-4',  minHeight: '52px' },
+  sm: { padding: 'px-6 py-3',    minHeight: '40px', fontSize: '0.75rem' },
+  md: { padding: 'px-8 py-3.5',  minHeight: '44px', fontSize: '0.75rem' },
+  lg: { padding: 'px-10 py-4',   minHeight: '52px', fontSize: '0.8125rem' },
 }
 
-const BASE = 'inline-flex items-center justify-center gap-2 transition-all duration-200 select-none'
-const TEXT = 'font-medium text-[0.72rem] tracking-[0.18em] uppercase'
-
-/**
- * Unified CTA button.
- *
- * variant   — primary | outline-dark | outline-light | ghost
- * size      — sm | md | lg
- * to        — renders as React Router <Link>
- * href      — renders as <a>
- * external  — adds target="_blank" rel="noopener noreferrer" when href is set
- * otherwise renders as <button>
- */
 export default function CTAButton({
   variant = 'primary',
   size = 'lg',
@@ -50,17 +39,25 @@ export default function CTAButton({
   ...props
 }) {
   const [hovered, setHovered] = useState(false)
-  const { base, hover } = VARIANTS[variant] || VARIANTS.primary
-  const { padding, minHeight } = SIZES[size] || SIZES.lg
+  const { base, hover } = VARIANTS[variant] ?? VARIANTS.primary
+  const { padding, minHeight, fontSize } = SIZES[size] ?? SIZES.lg
 
   const style = {
     fontFamily: 'Manrope, sans-serif',
+    fontSize,
+    fontWeight: 500,
+    letterSpacing: '0.14em',
+    textTransform: 'uppercase',
     minHeight,
+    transition: 'all 0.2s ease',
     ...(hovered ? { ...base, ...hover } : base),
   }
 
-  const cls = `${BASE} ${TEXT} ${padding} ${className}`
-  const handlers = { onMouseEnter: () => setHovered(true), onMouseLeave: () => setHovered(false) }
+  const cls = `inline-flex items-center justify-center gap-2 select-none whitespace-nowrap ${padding} ${className}`.trim()
+  const handlers = {
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
+  }
 
   if (to) return <Link to={to} style={style} className={cls} {...handlers} {...props}>{children}</Link>
   if (href) {

@@ -23,7 +23,7 @@ export default function Footer() {
       {/* Gold top rule */}
       <div style={{ height: 1, backgroundColor: '#C9A96E' }} />
 
-      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
 
         {/* ─── Brand row ─── */}
         <div
@@ -47,7 +47,7 @@ export default function Footer() {
             <p
               style={{
                 fontFamily: 'Manrope, sans-serif',
-                fontSize: '0.83rem',
+                fontSize: '0.9375rem',
                 color: 'rgba(250,248,244,0.38)',
                 fontWeight: 300,
                 lineHeight: 1.9,
@@ -80,7 +80,7 @@ export default function Footer() {
           <div>
             <p
               className="uppercase mb-7"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
             >
               Navigate
             </p>
@@ -109,7 +109,7 @@ export default function Footer() {
           <div>
             <p
               className="uppercase mb-7"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
             >
               Contact
             </p>
@@ -138,7 +138,7 @@ export default function Footer() {
                 <div>
                   <p
                     className="uppercase mb-0.5"
-                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.67rem', color: 'rgba(250,248,244,0.30)', fontWeight: 300, letterSpacing: '0.14em' }}
+                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.6875rem', color: 'rgba(250,248,244,0.30)', fontWeight: 300, letterSpacing: '0.14em' }}
                   >
                     WhatsApp
                   </p>
@@ -156,7 +156,7 @@ export default function Footer() {
           <div>
             <p
               className="uppercase mb-7"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
             >
               Location
             </p>
@@ -173,7 +173,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 uppercase transition-colors duration-200"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: 'rgba(250,248,244,0.25)', fontWeight: 300, letterSpacing: '0.16em' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(250,248,244,0.25)', fontWeight: 300, letterSpacing: '0.16em' }}
               onMouseEnter={e => e.currentTarget.style.color = '#C9A96E'}
               onMouseLeave={e => e.currentTarget.style.color = 'rgba(250,248,244,0.25)'}
             >
@@ -185,14 +185,14 @@ export default function Footer() {
 
       {/* ─── Copyright bar ─── */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', color: 'rgba(250,248,244,0.2)', fontWeight: 300 }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(250,248,244,0.2)', fontWeight: 300 }}
           >
             &copy; {new Date().getFullYear()} Villa Leveque. All rights reserved.
           </p>
           <p
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', color: 'rgba(250,248,244,0.2)', fontWeight: 300 }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(250,248,244,0.2)', fontWeight: 300 }}
           >
             Managed by Our Villa Rentals
           </p>

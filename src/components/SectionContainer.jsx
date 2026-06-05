@@ -1,3 +1,12 @@
+/**
+ * Site-wide section wrapper.
+ *
+ * bg       — 'cream' | 'white' | 'navy' | 'dark' | 'olive' | 'sand' | 'transparent' | raw CSS colour
+ * size     — 'sm' | 'md' | 'lg'  (vertical padding)
+ * narrow   — max-w-3xl instead of max-w-[1280px]
+ * full     — no inner container (full-bleed content)
+ */
+
 const BG = {
   cream:       '#FAF8F4',
   white:       '#FFFFFF',
@@ -8,27 +17,29 @@ const BG = {
   transparent: 'transparent',
 }
 
-const SPACING = {
-  none: '',
-  xs:   'py-10 md:py-14',
-  sm:   'py-12 md:py-16',
-  md:   'py-16 md:py-20 lg:py-24',
-  lg:   'py-20 md:py-24 lg:py-28',
-  xl:   'py-24 md:py-32 lg:py-36',
+// 80px → 96px → 120px desktop  (matches user's 80–120px spec)
+const SIZE = {
+  sm:  'py-16 md:py-20',
+  md:  'py-20 md:py-24 lg:py-28',
+  lg:  'py-24 md:py-28 lg:py-32',
 }
 
-/**
- * Reusable section wrapper with standardised max-width and padding.
- *
- * bg        — preset key from BG map, or a raw CSS colour string
- * spacing   — preset key from SPACING map
- * narrow    — use max-w-4xl instead of max-w-7xl
- * className — extra classes on the inner container div
- */
+// Legacy alias so old `spacing` prop still works
+const SPACING_ALIAS = {
+  xs:  'sm',
+  sm:  'sm',
+  md:  'md',
+  lg:  'lg',
+  xl:  'lg',
+  none: null,
+}
+
 export default function SectionContainer({
   bg = 'cream',
-  spacing = 'lg',
+  size,
+  spacing,          // legacy
   narrow = false,
+  full = false,
   className = '',
   style: extraStyle = {},
   children,
@@ -36,11 +47,17 @@ export default function SectionContainer({
 }) {
   const backgroundColor = BG[bg] ?? bg
 
+  // Resolve size: new `size` prop takes priority, then legacy `spacing`, then 'md'
+  const resolved = size ?? SPACING_ALIAS[spacing] ?? 'md'
+  const paddingClass = resolved ? SIZE[resolved] ?? SIZE.md : ''
+
+  const containerClass = full
+    ? `${paddingClass} ${className}`.trim()
+    : `${narrow ? 'max-w-3xl' : 'max-w-[1280px]'} mx-auto px-5 md:px-8 lg:px-12 ${paddingClass} ${className}`.trim()
+
   return (
     <section style={{ backgroundColor, ...extraStyle }} {...props}>
-      <div
-        className={`${narrow ? 'max-w-4xl' : 'max-w-7xl'} mx-auto px-5 md:px-8 lg:px-12 ${SPACING[spacing]} ${className}`}
-      >
+      <div className={containerClass}>
         {children}
       </div>
     </section>

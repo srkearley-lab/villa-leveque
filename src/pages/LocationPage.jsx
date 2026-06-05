@@ -43,7 +43,7 @@ function SectionLabel({ children }) {
   return (
     <p
       className="uppercase mb-4"
-      style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+      style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
     >
       {children}
     </p>
@@ -63,7 +63,7 @@ function SectionHeading({ children }) {
 
 function Body({ children }) {
   return (
-    <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9 }}>
+    <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9 }}>
       {children}
     </p>
   )
@@ -137,7 +137,7 @@ export default function LocationPage() {
                     style={{ color: '#C9A96E', flexShrink: 0, marginTop: 4 }}
                   />
                   <span
-                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#1C2B3A', fontWeight: 300, lineHeight: 1.7 }}
+                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: '#1C2B3A', fontWeight: 300, lineHeight: 1.7 }}
                   >
                     {item}
                   </span>
@@ -154,7 +154,7 @@ export default function LocationPage() {
               >
                 <Clock size={13} style={{ color: '#C9A96E' }} />
                 <p
-                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em', textTransform: 'uppercase' }}
+                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em', textTransform: 'uppercase' }}
                 >
                   Getting There
                 </p>
@@ -175,7 +175,7 @@ export default function LocationPage() {
                     {place}
                   </span>
                   <span
-                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.82rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.05em' }}
+                    style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9375rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.05em' }}
                   >
                     {time}
                   </span>
@@ -225,13 +225,13 @@ export default function LocationPage() {
             </p>
             <p
               className="mt-1.5"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.82rem', color: '#6B7C5C', fontWeight: 300 }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9375rem', color: '#6B7C5C', fontWeight: 300 }}
             >
               Kassiopi, Corfu, Greece
             </p>
             <p
               className="mt-1"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.7rem', color: '#9aA090', fontWeight: 300, letterSpacing: '0.1em' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#9aA090', fontWeight: 300, letterSpacing: '0.1em' }}
             >
               39°47′ N &nbsp; 19°55′ E
             </p>
@@ -261,7 +261,7 @@ export default function LocationPage() {
           <SectionHeading>Things to Do<br />Around Kassiopi</SectionHeading>
           <p
             className="mx-auto"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '50ch' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '50ch' }}
           >
             Kassiopi offers an exceptional range of activities within easy reach of the villa —
             from hidden beaches to harbour dining and boat trips.
@@ -308,7 +308,7 @@ export default function LocationPage() {
           </p>
           <p
             className="mt-3 uppercase"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: 'rgba(250,248,244,0.45)', letterSpacing: '0.28em', fontWeight: 300 }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(250,248,244,0.45)', letterSpacing: '0.28em', fontWeight: 300 }}
           >
             North-Eastern Coast &nbsp;&middot;&nbsp; Greece
           </p>
@@ -334,7 +334,7 @@ export default function LocationPage() {
           </h2>
           <p
             className="mb-10 mx-auto"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '40ch' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '40ch' }}
           >
             Check availability for your preferred dates and let us arrange everything else.
           </p>

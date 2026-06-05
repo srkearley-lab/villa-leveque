@@ -39,7 +39,7 @@ export default function ServiceSection({ num, title, body, detail, img, imageLef
         <span
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '0.85rem',
+            fontSize: '0.9375rem',
             color: '#C9A96E',
             fontWeight: 400,
             letterSpacing: '0.22em',
@@ -51,7 +51,7 @@ export default function ServiceSection({ num, title, body, detail, img, imageLef
         <span
           style={{
             fontFamily: 'Manrope, sans-serif',
-            fontSize: '0.65rem',
+            fontSize: '0.75rem',
             color: '#C9A96E',
             fontWeight: 500,
             letterSpacing: '0.26em',
@@ -80,7 +80,7 @@ export default function ServiceSection({ num, title, body, detail, img, imageLef
         className="mb-5 leading-relaxed"
         style={{
           fontFamily: 'Manrope, sans-serif',
-          fontSize: '0.9rem',
+          fontSize: '1rem',
           color: '#5A6B60',
           fontWeight: 300,
           lineHeight: 1.9,

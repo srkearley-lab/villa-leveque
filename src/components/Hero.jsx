@@ -51,40 +51,40 @@ export default function Hero() {
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(15,26,36,0.2) 0%, rgba(15,26,36,0.5) 100%)',
+          background: 'linear-gradient(to bottom, rgba(15,26,36,0.15) 0%, rgba(15,26,36,0.55) 100%)',
           zIndex: 1,
         }}
       />
 
-      {/* Content — bottom third */}
+      {/* Content — centred, bottom-aligned */}
       <div
-        className="absolute inset-0 flex flex-col justify-end text-center text-white"
+        className="absolute inset-0 flex flex-col items-center justify-end text-center text-white"
         style={{ zIndex: 2 }}
       >
-        <div className="px-6 pb-28 md:pb-32">
+        <div className="w-full px-6 pb-28 md:pb-36 flex flex-col items-center text-center">
 
           {/* Location label */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="uppercase mb-7 text-white/50"
+            className="uppercase mb-8 text-white/50"
             style={{
               fontFamily: 'Manrope, sans-serif',
               fontWeight: 300,
-              fontSize: 'var(--label)',
+              fontSize: '0.75rem',
               letterSpacing: '0.38em',
             }}
           >
             Kassiopi &nbsp;&middot;&nbsp; Corfu &nbsp;&middot;&nbsp; Greece
           </motion.p>
 
-          {/* Gold rule — 60px */}
+          {/* Gold rule */}
           <motion.div
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.28 }}
-            className="mx-auto mb-8 origin-center"
+            className="mb-9 origin-center"
             style={{ width: '60px', height: '1px', backgroundColor: '#C9A96E' }}
           />
 
@@ -93,15 +93,15 @@ export default function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.95, delay: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
-            className="mx-auto mb-7 text-white"
+            className="mb-8 text-white text-center"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontStyle: 'italic',
               fontWeight: 300,
-              fontSize: 'clamp(4rem, 9vw, 8rem)',
-              lineHeight: 1.0,
-              letterSpacing: '-0.02em',
-              maxWidth: '14ch',
+              fontSize: 'clamp(3.5rem, 7vw, 6.5rem)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.01em',
+              maxWidth: '900px',
             }}
           >
             A Private Villa<br />
@@ -113,13 +113,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.58 }}
-            className="mx-auto mb-10 text-white/60"
+            className="mb-12 text-white/60 text-center"
             style={{
               fontFamily: 'Manrope, sans-serif',
               fontWeight: 300,
-              fontSize: 'clamp(0.875rem, 1.4vw, 1.05rem)',
-              maxWidth: '44ch',
-              lineHeight: 1.8,
+              fontSize: 'clamp(0.9375rem, 1.4vw, 1.0625rem)',
+              maxWidth: '600px',
+              lineHeight: 1.85,
             }}
           >
             Three en-suite bedrooms, a private pool and sea views across to Albania —
@@ -131,12 +131,22 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.72 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
           >
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center px-10 py-4 text-xs tracking-[0.22em] uppercase font-medium transition-all duration-200 min-h-[52px]"
-              style={{ fontFamily: 'Manrope, sans-serif', backgroundColor: '#C9A96E', color: '#0F1A24' }}
+              className="inline-flex items-center justify-center whitespace-nowrap transition-all duration-200"
+              style={{
+                fontFamily: 'Manrope, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 500,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                padding: '1rem 2.5rem',
+                minHeight: '52px',
+                backgroundColor: '#C9A96E',
+                color: '#0F1A24',
+              }}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
             >
@@ -144,9 +154,15 @@ export default function Hero() {
             </Link>
             <Link
               to="/villa"
-              className="inline-flex items-center justify-center px-10 py-4 text-xs tracking-[0.22em] uppercase font-light transition-all duration-200 min-h-[52px]"
+              className="inline-flex items-center justify-center whitespace-nowrap transition-all duration-200"
               style={{
                 fontFamily: 'Manrope, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 400,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                padding: '1rem 2.5rem',
+                minHeight: '52px',
                 border: '1px solid rgba(255,255,255,0.38)',
                 color: 'rgba(255,255,255,0.82)',
               }}
@@ -176,7 +192,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2.5 text-white/45"
                 style={{
                   fontFamily: 'Manrope, sans-serif',
-                  fontSize: '0.7rem',
+                  fontSize: '0.75rem',
                   fontWeight: 300,
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',

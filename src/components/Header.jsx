@@ -52,7 +52,7 @@ export default function Header() {
                 <span
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
+                    fontSize: 'clamp(1.4rem, 2vw, 1.65rem)',
                     fontWeight: 400,
                     letterSpacing: '0.07em',
                     color: solid ? '#1C2B3A' : '#FFFFFF',
@@ -121,14 +121,14 @@ export default function Header() {
                 className="hidden lg:inline-flex items-center justify-center whitespace-nowrap transition-all duration-200"
                 style={{
                   fontFamily: 'Manrope, sans-serif',
-                  fontSize: '0.72rem',
+                  fontSize: '0.7rem',
                   fontWeight: 500,
-                  letterSpacing: '0.18em',
+                  letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  padding: '12px 28px',
+                  padding: '0.75rem 1.75rem',
                   minHeight: 44,
                   backgroundColor: '#C9A96E',
-                  color: '#0F1A24',
+                  color: '#1C2B3A',
                 }}
                 onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b8935a'}
                 onMouseLeave={e => e.currentTarget.style.backgroundColor = '#C9A96E'}
@@ -222,7 +222,7 @@ export default function Header() {
                   className="inline-flex items-center justify-center transition-all duration-200"
                   style={{
                     fontFamily: 'Manrope, sans-serif',
-                    fontSize: '0.72rem',
+                    fontSize: '0.75rem',
                     fontWeight: 500,
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
@@ -247,7 +247,7 @@ export default function Header() {
               <p
                 style={{
                   fontFamily: 'Manrope, sans-serif',
-                  fontSize: '0.68rem',
+                  fontSize: '0.75rem',
                   color: 'rgba(255,255,255,0.2)',
                   fontWeight: 300,
                   letterSpacing: '0.28em',

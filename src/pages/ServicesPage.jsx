@@ -61,9 +61,9 @@ export default function ServicesPage() {
 
       {/* Intro strip */}
       <div style={{ backgroundColor: '#FAF8F4', borderBottom: '1px solid #E8DFD0' }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <p
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.88rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.8, maxWidth: '60ch' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9375rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.8, maxWidth: '60ch' }}
           >
             Villa Leveque is managed by Our Villa Rentals, a boutique concierge service dedicated to
             making your stay in Corfu exceptional. Every service below can be arranged on your behalf.
@@ -94,7 +94,7 @@ export default function ServicesPage() {
           <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
           <p
             className="uppercase mb-4"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
           >
             Enquire
           </p>
@@ -111,7 +111,7 @@ export default function ServicesPage() {
           </h2>
           <p
             className="mb-10 mx-auto"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '44ch' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: 'rgba(250,248,244,0.45)', fontWeight: 300, lineHeight: 1.9, maxWidth: '44ch' }}
           >
             Get in touch to discuss your requirements and we'll tailor a package that makes your
             stay truly exceptional.

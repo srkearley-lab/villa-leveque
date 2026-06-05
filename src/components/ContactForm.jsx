@@ -206,7 +206,7 @@ export default function ContactForm({ prefilledDates = {} }) {
         </CTAButton>
         <p
           className="mt-5"
-          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: '#9aA090', fontWeight: 300, lineHeight: 1.7 }}
+          style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: '#9aA090', fontWeight: 300, lineHeight: 1.7 }}
         >
           No payment required. We'll confirm availability and respond within 24 hours.
         </p>

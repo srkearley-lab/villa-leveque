@@ -35,10 +35,10 @@ export default function ContactPage() {
         className="pt-28 md:pt-32 lg:pt-36 pb-12 md:pb-14"
         style={{ backgroundColor: '#0F1A24' }}
       >
-        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
           <p
             className="uppercase mb-4"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
           >
             Get in Touch
           </p>
@@ -57,7 +57,7 @@ export default function ContactPage() {
           </h1>
           <p
             className="mt-4"
-            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.38)', fontWeight: 300, lineHeight: 1.8, maxWidth: '44ch' }}
+            style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: 'rgba(250,248,244,0.38)', fontWeight: 300, lineHeight: 1.8, maxWidth: '44ch' }}
           >
             Share your preferred dates and we'll confirm availability, answer any questions and
             help you plan the perfect stay.
@@ -92,7 +92,7 @@ export default function ContactPage() {
                 </h2>
                 <p
                   className="mt-1.5"
-                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.8rem', color: 'rgba(250,248,244,0.35)', fontWeight: 300 }}
+                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.35)', fontWeight: 300 }}
                 >
                   Kassiopi, Corfu, Greece
                 </p>
@@ -143,10 +143,10 @@ export default function ContactPage() {
                 >
                   <span className="text-white flex-shrink-0">{WA_SVG}</span>
                   <div>
-                    <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.85rem', fontWeight: 500, color: '#ffffff' }}>
+                    <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9375rem', fontWeight: 500, color: '#ffffff' }}>
                       Chat on WhatsApp
                     </p>
-                    <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.72rem', color: 'rgba(255,255,255,0.72)', fontWeight: 300 }}>
+                    <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(255,255,255,0.72)', fontWeight: 300 }}>
                       Fastest way to reach us
                     </p>
                   </div>
@@ -157,7 +157,7 @@ export default function ContactPage() {
               <div className="px-8 py-6 flex items-start gap-3">
                 <Clock size={13} style={{ color: '#C9A96E', flexShrink: 0, marginTop: 2 }} />
                 <p
-                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.78rem', color: 'rgba(250,248,244,0.28)', fontWeight: 300, lineHeight: 1.7 }}
+                  style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.28)', fontWeight: 300, lineHeight: 1.7 }}
                 >
                   Available 7 days a week. We respond to all enquiries within 24 hours.
                 </p>
@@ -182,7 +182,7 @@ export default function ContactPage() {
           <div>
             <p
               className="uppercase mb-4"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}
             >
               Send an Enquiry
             </p>
@@ -201,7 +201,7 @@ export default function ContactPage() {
             </h2>
             <p
               className="mb-10"
-              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '48ch' }}
+              style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '48ch' }}
             >
               Fill in your preferred dates below and we'll come back to you within 24 hours
               with availability and everything you need to plan your stay.

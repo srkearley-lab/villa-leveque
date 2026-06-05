@@ -52,7 +52,7 @@ const FULL_AMENITIES = [
 
 function Label({ children }) {
   return (
-    <p className="uppercase mb-3" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.68rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}>
+    <p className="uppercase mb-3" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.26em' }}>
       {children}
     </p>
   )
@@ -68,7 +68,7 @@ function Heading({ children, light }) {
 
 function Body({ children }) {
   return (
-    <p className="leading-relaxed" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9 }}>
+    <p className="leading-relaxed" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9 }}>
       {children}
     </p>
   )
@@ -270,7 +270,7 @@ export default function VillaPage() {
                   <p className="mb-1" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: '#C9A96E', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                     {b.label}
                   </p>
-                  <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.82rem', color: '#5A6B60', fontWeight: 300 }}>
+                  <p style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9375rem', color: '#5A6B60', fontWeight: 300 }}>
                     {b.detail}
                   </p>
                 </div>
@@ -293,7 +293,7 @@ export default function VillaPage() {
           <p className="font-light" style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 'clamp(1.75rem, 4vw, 3rem)', color: '#FAF8F4', lineHeight: 1.1 }}>
             Kassiopi · Corfu
           </p>
-          <p className="mt-3 uppercase" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.65rem', color: 'rgba(250,248,244,0.45)', letterSpacing: '0.3em', fontWeight: 300 }}>
+          <p className="mt-3 uppercase" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', color: 'rgba(250,248,244,0.45)', letterSpacing: '0.3em', fontWeight: 300 }}>
             Northeast Corfu &nbsp;·&nbsp; Greece
           </p>
         </div>
@@ -310,7 +310,7 @@ export default function VillaPage() {
         >
           <Label>Outside</Label>
           <Heading>The Pool, Terrace<br />&amp; Garden</Heading>
-          <p className="mt-5 mx-auto" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '52ch' }}>
+          <p className="mt-5 mx-auto" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: '#5A6B60', fontWeight: 300, lineHeight: 1.9, maxWidth: '52ch' }}>
             At Villa Leveque, outdoor living is central to the experience — long sun-drenched afternoons beside the pool and candlelit evenings beneath the pergola.
           </p>
         </motion.div>
@@ -421,7 +421,7 @@ export default function VillaPage() {
           <div className="w-8 h-px mx-auto mb-8" style={{ backgroundColor: '#C9A96E' }} />
           <Label>Availability</Label>
           <Heading light>Ready to Book?</Heading>
-          <p className="mt-5 mx-auto mb-10" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '0.9rem', color: 'rgba(250,248,244,0.5)', fontWeight: 300, lineHeight: 1.9, maxWidth: '44ch' }}>
+          <p className="mt-5 mx-auto mb-10" style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1rem', color: 'rgba(250,248,244,0.5)', fontWeight: 300, lineHeight: 1.9, maxWidth: '44ch' }}>
             Submit your preferred dates and we'll confirm availability and everything you need for a perfect stay at Villa Leveque.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -43,7 +43,7 @@ export default function PageHero({
             className="uppercase mb-5"
             style={{
               fontFamily: 'Manrope, sans-serif',
-              fontSize: '0.68rem',
+              fontSize: '0.75rem',
               color: 'rgba(255,255,255,0.42)',
               fontWeight: 300,
               letterSpacing: '0.35em',
@@ -75,7 +75,7 @@ export default function PageHero({
             style={{
               fontFamily: 'Manrope, sans-serif',
               fontWeight: 300,
-              fontSize: '0.9rem',
+              fontSize: '1rem',
               color: 'rgba(255,255,255,0.52)',
               marginTop: 18,
               maxWidth: '52ch',
